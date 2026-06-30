@@ -575,12 +575,12 @@ export default function HomePage() {
             </div>
             <div className="psc-stage">
               {[
-                { cls: 'psc-active', src: '/images/Foto Produk/Garva.png', alt: 'Garva' },
-                { cls: 'psc-next', src: '/images/Foto Produk/BerryFine.png', alt: 'BerryFine' },
-                { cls: 'psc-hidden', src: '/images/Foto Produk/Chocofine.png', alt: 'Chocofine' },
-                { cls: 'psc-hidden', src: '/images/Foto Produk/Mocafine.png', alt: 'Mocafine' },
-                { cls: 'psc-hidden', src: '/images/Foto Produk/Master Bread.png', alt: 'Master Bread' },
-                { cls: 'psc-hidden', src: '/images/Foto Produk/Seasoned Flour.png', alt: 'Seasoned Flour' },
+                { cls: 'psc-active', src: '/images/foto-produk/Garva.png', alt: 'Garva' },
+                { cls: 'psc-next', src: '/images/foto-produk/BerryFine.png', alt: 'BerryFine' },
+                { cls: 'psc-hidden', src: '/images/foto-produk/Chocofine.png', alt: 'Chocofine' },
+                { cls: 'psc-hidden', src: '/images/foto-produk/Mocafine.png', alt: 'Mocafine' },
+                { cls: 'psc-hidden', src: '/images/foto-produk/Master Bread.png', alt: 'Master Bread' },
+                { cls: 'psc-hidden', src: '/images/foto-produk/Seasoned Flour.png', alt: 'Seasoned Flour' },
               ].map((p, i) => (
                 <div key={i} className={`psc-prod ${p.cls}`} data-idx={i}><img src={p.src} alt={p.alt} /></div>
               ))}
@@ -786,8 +786,8 @@ export default function HomePage() {
         @media (max-width:900px){ .cta-fp-wrap{ display:none; } }
       `}} />
       <section className="cta-banner" style={{ position: 'relative', overflow: 'hidden' }}>
-        <div className="cta-fp-wrap left"><img src="/images/Foto Produk/Garva.png" alt="" className="cta-fp fp-garva" /></div>
-        <div className="cta-fp-wrap right"><img src="/images/Foto Produk/Mocafine.png" alt="" className="cta-fp fp-mocaf" /></div>
+        <div className="cta-fp-wrap left"><img src="/images/foto-produk/Garva.png" alt="" className="cta-fp fp-garva" /></div>
+        <div className="cta-fp-wrap right"><img src="/images/foto-produk/Mocafine.png" alt="" className="cta-fp fp-mocaf" /></div>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <h2 className="section-title">Partner with Us</h2>
           <p>Whether you&apos;re a buyer, investor, or farmer — there&apos;s a place for you in the Rumah Mocaf ecosystem.</p>

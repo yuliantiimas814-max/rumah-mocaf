@@ -263,7 +263,7 @@ export default function AboutPage() {
               '/images/history rumah mocaf.jpg',
               '/images/petani rumah mocaf.jpg',
               '/images/komunitas.jpg',
-              '/images/Foto Produk/Mocafine.png',
+              '/images/foto-produk/Mocafine.png',
               '/images/internasional inovator 1.jpeg',
               '/images/internasional inovator 1.jpeg',
               '/images/craftsmen.jpg',

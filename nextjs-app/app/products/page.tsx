@@ -28,7 +28,7 @@ export default function ProductsPage() {
           <div style={{ marginTop: '48px' }}>
             <div className="two-col">
               <div className="two-col-img" style={{ background: '#f8faf8', borderRadius: 'var(--radius-lg)', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
-                <img src="/images/Foto Produk/Mocafine.png" alt="Mocafine Mocaf Flour" style={{ width: '100%', height: '100%', objectFit: 'contain', maxHeight: '340px' }} />
+                <img src="/images/foto-produk/Mocafine.png" alt="Mocafine Mocaf Flour" style={{ width: '100%', height: '100%', objectFit: 'contain', maxHeight: '340px' }} />
               </div>
               <div className="two-col-text">
                 <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '16px' }}>
@@ -84,12 +84,12 @@ export default function ProductsPage() {
           </div>
           <div className="product-grid" style={{ marginTop: '48px' }}>
             {[
-              { img: '/images/Foto Produk/BerryFine.png', alt: 'BerryFil Cookies', name: 'BerryFil — Gluten Free Cookies', desc: 'Gluten-free cookies with a luscious berry filling. Crunchy, malty, and wholesome — perfect for daily snacking or gifting.', badges: [{ cls: 'badge-green', label: 'Gluten Free' }, { cls: 'badge-white', label: 'Vegan' }] },
-              { img: '/images/Foto Produk/Chocofine.png', alt: 'Chocofine Cookies', name: 'Chocofine — Gluten Free Cookies', desc: 'Gluten-free cookies with a rich, malty chocolate flavor. A satisfying crunch in every bite — guilt-free indulgence.', badges: [{ cls: 'badge-green', label: 'Gluten Free' }, { cls: 'badge-white', label: 'Vegan' }] },
-              { img: '/images/Foto Produk/Master Bread.png', alt: 'Lasti Bread Premix', name: 'Lasti Bread — Bread Premix', desc: 'Gluten-Free Bread Premix. Bake Like a Pro — a complete mix for baking delicious, fluffy gluten-free bread at home.', badges: [{ cls: 'badge-green', label: 'Gluten Free' }, { cls: 'badge-blue', label: 'Halal' }] },
-              { img: '/images/Foto Produk/Seasoned Flour.png', alt: 'Fried Chicken Flour', name: 'Fried Chicken Flour', desc: 'Gluten-free seasoned coating flour for perfectly crispy fried chicken. A special mocaf-based formula for exceptional crunch.', badges: [{ cls: 'badge-green', label: 'Gluten Free' }, { cls: 'badge-blue', label: 'Halal' }] },
+              { img: '/images/foto-produk/BerryFine.png', alt: 'BerryFil Cookies', name: 'BerryFil — Gluten Free Cookies', desc: 'Gluten-free cookies with a luscious berry filling. Crunchy, malty, and wholesome — perfect for daily snacking or gifting.', badges: [{ cls: 'badge-green', label: 'Gluten Free' }, { cls: 'badge-white', label: 'Vegan' }] },
+              { img: '/images/foto-produk/Chocofine.png', alt: 'Chocofine Cookies', name: 'Chocofine — Gluten Free Cookies', desc: 'Gluten-free cookies with a rich, malty chocolate flavor. A satisfying crunch in every bite — guilt-free indulgence.', badges: [{ cls: 'badge-green', label: 'Gluten Free' }, { cls: 'badge-white', label: 'Vegan' }] },
+              { img: '/images/foto-produk/Master Bread.png', alt: 'Lasti Bread Premix', name: 'Lasti Bread — Bread Premix', desc: 'Gluten-Free Bread Premix. Bake Like a Pro — a complete mix for baking delicious, fluffy gluten-free bread at home.', badges: [{ cls: 'badge-green', label: 'Gluten Free' }, { cls: 'badge-blue', label: 'Halal' }] },
+              { img: '/images/foto-produk/Seasoned Flour.png', alt: 'Fried Chicken Flour', name: 'Fried Chicken Flour', desc: 'Gluten-free seasoned coating flour for perfectly crispy fried chicken. A special mocaf-based formula for exceptional crunch.', badges: [{ cls: 'badge-green', label: 'Gluten Free' }, { cls: 'badge-blue', label: 'Halal' }] },
               { img: '/images/Product/image21.png', alt: 'Mocasion', name: 'Mocasion', desc: 'An innovative mocaf-based snack — the latest creation from the Rumah Mocaf innovation kitchen for health-conscious snack lovers.', badges: [{ cls: 'badge-green', label: 'Gluten Free' }, { cls: 'badge-blue', label: 'Halal' }] },
-              { img: '/images/Foto Produk/Garva.png', alt: 'Garva Cassava Oil', name: 'Garva — Healthy Cassava Oil', desc: 'Organic cassava oil cold-pressed from selected cassava — a natural, nourishing oil for healthy everyday cooking.', badges: [{ cls: 'badge-green', label: 'Organic' }, { cls: 'badge-white', label: 'Natural' }] },
+              { img: '/images/foto-produk/Garva.png', alt: 'Garva Cassava Oil', name: 'Garva — Healthy Cassava Oil', desc: 'Organic cassava oil cold-pressed from selected cassava — a natural, nourishing oil for healthy everyday cooking.', badges: [{ cls: 'badge-green', label: 'Organic' }, { cls: 'badge-white', label: 'Natural' }] },
             ].map((p) => (
               <div key={p.name} className="product-card">
                 <div className="product-img">
