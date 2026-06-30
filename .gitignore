@@ -1,0 +1,16 @@
+# Video files (too large for GitHub)
+*.mp4
+*.mov
+*.avi
+
+# Node.js
+node_modules/
+nextjs-app/node_modules/
+nextjs-app/.next/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Word/PDF docs (binary, optional)
+*.docx

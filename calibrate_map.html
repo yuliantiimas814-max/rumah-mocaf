@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Map Calibration</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0B1E40; font-family:sans-serif; }
+  .wrap { position:relative; width:100vw; height:100vh; overflow:hidden; }
+  .map-img { width:100%; height:100%; object-fit:cover; object-position:center 62%; display:block; }
+  .crosshair { position:absolute; width:16px; height:16px; border:2px solid #ff0; border-radius:50%; transform:translate(-50%,-50%); pointer-events:none; }
+  #info { position:fixed; top:12px; left:12px; background:rgba(0,0,0,0.85); color:#fff; padding:12px 16px; border-radius:8px; font-size:13px; line-height:1.8; z-index:100; min-width:220px; }
+  #coords { font-size:15px; color:#4ade80; font-weight:700; }
+  .pin-dot { position:absolute; width:10px; height:10px; background:red; border-radius:50%; transform:translate(-50%,-50%); pointer-events:none; }
+  .pin-label { position:absolute; color:#fff; font-size:11px; white-space:nowrap; transform:translate(-50%,-120%); background:rgba(0,0,0,0.6); padding:2px 5px; border-radius:3px; pointer-events:none; }
+</style>
+</head>
+<body>
+<div id="info">
+  Click on a country to get its SVG coordinates<br/>
+  <span id="coords">—</span><br/>
+  <small>SVG: 1440×716</small>
+</div>
+<div class="wrap" id="wrap">
+  <img src="nextjs-app/public/MAP.svg" class="map-img" id="mapImg"/>
+</div>
+<script>
+const SVG_W = 1440, SVG_H = 716;
+const wrap = document.getElementById('wrap');
+const info = document.getElementById('coords');
+
+// Current pins
+const PINS = [
+  { name:'Singapore', tipX:1081, tipY:488 },
+  { name:'Malaysia',  tipX:1073, tipY:484 },
+  { name:'Dubai',     tipX:887,  tipY:429 },
+  { name:'Oman',      tipX:900,  tipY:433 },
+  { name:'Turkey',    tipX:798,  tipY:392 },
+  { name:'UK',        tipX:666,  tipY:363 },
+  { name:'Germany',   tipX:720,  tipY:361 },
+  { name:'US',        tipX:371,  tipY:390 },
+];
+
+function getScale() {
+  const cw = wrap.offsetWidth, ch = wrap.offsetHeight;
+  const s = Math.max(cw/SVG_W, ch/SVG_H);
+  const xOff = (cw - SVG_W*s)/2, yOff = (ch - SVG_H*s)/2;
+  return {s, xOff, yOff};
+}
+
+function placeDots() {
+  wrap.querySelectorAll('.pin-dot,.pin-label').forEach(e=>e.remove());
+  const {s, xOff, yOff} = getScale();
+  PINS.forEach(p => {
+    const dot = document.createElement('div');
+    dot.className='pin-dot';
+    dot.style.left=(p.tipX*s+xOff)+'px';
+    dot.style.top=(p.tipY*s+yOff)+'px';
+    const lbl = document.createElement('div');
+    lbl.className='pin-label';
+    lbl.textContent=p.name;
+    lbl.style.left=(p.tipX*s+xOff)+'px';
+    lbl.style.top=(p.tipY*s+yOff)+'px';
+    wrap.appendChild(dot);
+    wrap.appendChild(lbl);
+  });
+}
+
+wrap.addEventListener('click', e => {
+  const {s, xOff, yOff} = getScale();
+  const rect = wrap.getBoundingClientRect();
+  const screenX = e.clientX - rect.left;
+  const screenY = e.clientY - rect.top;
+  const svgX = Math.round((screenX - xOff) / s);
+  const svgY = Math.round((screenY - yOff) / s);
+  info.textContent = `tipX:${svgX}, tipY:${svgY}`;
+
+  wrap.querySelectorAll('.crosshair').forEach(e=>e.remove());
+  const ch = document.createElement('div');
+  ch.className='crosshair';
+  ch.style.left=screenX+'px';
+  ch.style.top=screenY+'px';
+  ch.style.borderColor='yellow';
+  wrap.appendChild(ch);
+});
+
+window.addEventListener('resize', placeDots);
+placeDots();
+</script>
+</body>
+</html>

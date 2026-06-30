@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Rumah Mocaf Indonesia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <img src="images/logo rumah mocaf.png" alt="Rumah Mocaf Indonesia" style="height:62px;width:auto;" />
+      </a>
+      <ul class="navbar-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="tentang-kami.html">About Us</a></li>
+        <li><a href="ekosistem.html">Ecosystem</a></li>
+        <li><a href="produk.html">Products</a></li>
+        
+        <li><a href="keberlanjutan.html">Sustainability</a></li>
+        <li><a href="berita.html">News</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <a href="kontak.html" class="btn btn-outline btn-sm">Contact Us</a>
+        <a href="https://mocafine.com" target="_blank" class="btn btn-primary btn-sm">Shop</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="index.html">Home</a><a href="tentang-kami.html">About Us</a><a href="ekosistem.html">Ecosystem</a><a href="produk.html">Products</a><a href="keberlanjutan.html">Sustainability</a><a href="berita.html">News</a>
+  <div class="mobile-drawer-actions"><a href="kontak.html" class="btn btn-outline">Contact Us</a><a href="https://mocafine.com" target="_blank" class="btn btn-primary">Shop</a></div>
+</div>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="section-label">Get in Touch</span>
+    <h1>Let's Collaborate</h1>
+    <p>Whether you're a B2B buyer, investor, CSR partner, or simply want to learn more — we'd love to hear from you.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-layout">
+
+      <!-- Form -->
+      <div>
+        <span class="section-label">Send a Message</span>
+        <h2 class="section-title" style="font-size:28px;margin-bottom:32px;">Write to Us</h2>
+        <form onsubmit="handleSubmit(event)">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label>Email *</label>
+              <input type="email" placeholder="email@company.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Company / Organization</label>
+            <input type="text" placeholder="Your company name (optional)" />
+          </div>
+          <div class="form-group">
+            <label>Type of Inquiry *</label>
+            <select required>
+              <option value="">-- Select inquiry type --</option>
+              <option>B2B Order / Wholesale</option>
+              <option>Request Sample</option>
+              <option>Partnership</option>
+              <option>Investor / CSR</option>
+              <option>Media / Press</option>
+              <option>Join as Farmer Partner</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message *</label>
+            <textarea placeholder="Write your question or message here..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:14px;">Send Message →</button>
+          <p style="font-size:12px;color:var(--gray-400);margin-top:12px;text-align:center;">We will respond within 1–2 business days.</p>
+        </form>
+      </div>
+
+      <!-- Info -->
+      <div>
+        <span class="section-label">Contact Information</span>
+        <h2 class="section-title" style="font-size:28px;margin-bottom:32px;">Reach Us Directly</h2>
+
+        <div class="contact-info-item">
+          <div class="contact-info-icon">✉</div>
+          <div>
+            <div class="contact-info-title">Email</div>
+            <a href="mailto:info@rumahmocaf.co.id" class="contact-info-text" style="color:var(--green);">info@rumahmocaf.co.id</a>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="contact-info-icon">💬</div>
+          <div>
+            <div class="contact-info-title">WhatsApp</div>
+            <a href="https://wa.me/6281234567890" target="_blank" class="contact-info-text" style="color:var(--green);">+62 812-3456-7890</a>
+            <div style="font-size:12px;color:var(--gray-400);margin-top:2px;">Click to start a chat</div>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📍</div>
+          <div>
+            <div class="contact-info-title">Production Office</div>
+            <div class="contact-info-text">Jl. Raya Banjarnegara No. 123<br/>Banjarnegara, Central Java 53400</div>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="contact-info-icon">🏢</div>
+          <div>
+            <div class="contact-info-title">Marketing Office</div>
+            <div class="contact-info-text">Jl. Sudirman No. 45<br/>Purwokerto, Central Java 53111</div>
+          </div>
+        </div>
+
+        <div style="margin-top:32px;">
+          <div class="contact-info-title" style="margin-bottom:14px;">Follow Us</div>
+          <div style="display:flex;gap:12px;">
+            <a href="#" style="width:44px;height:44px;border-radius:10px;background:var(--green-light);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--green);font-weight:700;" title="Facebook">f</a>
+            <a href="#" style="width:44px;height:44px;border-radius:10px;background:var(--green-light);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--green);" title="YouTube">▶</a>
+            <a href="#" style="width:44px;height:44px;border-radius:10px;background:var(--green-light);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--green);font-weight:700;" title="LinkedIn">in</a>
+            <a href="#" style="width:44px;height:44px;border-radius:10px;background:var(--green-light);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--green);" title="Instagram">◉</a>
+          </div>
+        </div>
+
+        <div style="margin-top:32px;background:var(--green-light);border-radius:var(--radius);padding:20px;">
+          <div style="font-weight:700;color:var(--green-dark);margin-bottom:8px;">🛒 Shop Our Products Online</div>
+          <p style="font-size:14px;color:var(--gray-600);margin-bottom:12px;">For retail purchases, visit our online store at mocafine.com</p>
+          <a href="https://mocafine.com" target="_blank" class="btn btn-primary btn-sm">Visit Mocafine.com ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-label">Location</span>
+      <h2 class="section-title">Find Us</h2>
+    </div>
+    <div style="margin-top:40px;background:var(--green-light);border-radius:var(--radius-lg);height:400px;display:flex;align-items:center;justify-content:center;border:2px dashed var(--green);">
+      <div style="text-align:center;">
+        <div style="font-size:48px;margin-bottom:16px;">📍</div>
+        <div style="font-size:18px;font-weight:700;color:var(--green-dark);margin-bottom:8px;">Banjarnegara, Central Java</div>
+        <p style="color:var(--gray-600);font-size:14px;margin-bottom:20px;">Google Maps will be embedded here</p>
+        <a href="https://maps.google.com/?q=Banjarnegara,Central+Java" target="_blank" class="btn btn-primary btn-sm">Open in Google Maps ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KERABAT — Agent Network -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:48px;">
+      <span class="section-label">Mitra & Agen</span>
+      <h2 class="section-title">Kerabat Rumah Mocaf</h2>
+      <p class="section-subtitle">Jaringan mitra dan agen Rumah Mocaf yang tersebar di seluruh penjuru Indonesia — dari Sumatera hingga Papua.</p>
+    </div>
+
+    <div class="map-placeholder">
+      <div class="map-label">🗺️ Peta Persebaran Agen</div>
+      <p style="color:#7a9485;font-size:14px;margin-top:8px;">Agen Rumah Mocaf tersebar di 6 wilayah besar Indonesia</p>
+      <div class="map-dots">
+        <span class="map-dot" style="left:10%;top:40%;" title="Sumatera">●</span>
+        <span class="map-dot" style="left:35%;top:55%;" title="Jawa">●</span>
+        <span class="map-dot" style="left:52%;top:45%;" title="Kalimantan">●</span>
+        <span class="map-dot" style="left:62%;top:62%;" title="Bali & NTT">●</span>
+        <span class="map-dot" style="left:70%;top:38%;" title="Sulawesi">●</span>
+        <span class="map-dot" style="left:87%;top:50%;" title="Maluku & Papua">●</span>
+      </div>
+    </div>
+
+    <div class="region-accordion" id="regionAccordion">
+      <div class="region-item">
+        <button class="region-header" onclick="toggleRegion(this)">
+          <span class="region-icon">🌴</span>
+          <span class="region-name">Sumatera</span>
+          <span class="region-count">— agen</span>
+          <span class="region-chevron">▼</span>
+        </button>
+        <div class="region-body">
+          <div class="agent-placeholder">
+            <p>Data agen wilayah Sumatera akan segera ditambahkan. Hubungi kami untuk informasi lebih lanjut.</p>
+            <a href="layanan.html" class="btn btn-primary btn-sm" style="margin-top:12px;">Daftar Jadi Agen →</a>
+          </div>
+        </div>
+      </div>
+      <div class="region-item active">
+        <button class="region-header" onclick="toggleRegion(this)">
+          <span class="region-icon">🏝️</span>
+          <span class="region-name">Jawa</span>
+          <span class="region-count">— agen</span>
+          <span class="region-chevron">▼</span>
+        </button>
+        <div class="region-body" style="display:block;">
+          <div class="agent-placeholder">
+            <p>Data agen wilayah Jawa akan segera ditambahkan. Rumah Mocaf berpusat di Banjarnegara, Jawa Tengah.</p>
+            <a href="layanan.html" class="btn btn-primary btn-sm" style="margin-top:12px;">Daftar Jadi Agen →</a>
+          </div>
+        </div>
+      </div>
+      <div class="region-item">
+        <button class="region-header" onclick="toggleRegion(this)">
+          <span class="region-icon">🌲</span>
+          <span class="region-name">Kalimantan</span>
+          <span class="region-count">— agen</span>
+          <span class="region-chevron">▼</span>
+        </button>
+        <div class="region-body">
+          <div class="agent-placeholder">
+            <p>Data agen wilayah Kalimantan akan segera ditambahkan.</p>
+            <a href="layanan.html" class="btn btn-primary btn-sm" style="margin-top:12px;">Daftar Jadi Agen →</a>
+          </div>
+        </div>
+      </div>
+      <div class="region-item">
+        <button class="region-header" onclick="toggleRegion(this)">
+          <span class="region-icon">🌺</span>
+          <span class="region-name">Bali &amp; Nusa Tenggara</span>
+          <span class="region-count">— agen</span>
+          <span class="region-chevron">▼</span>
+        </button>
+        <div class="region-body">
+          <div class="agent-placeholder">
+            <p>Data agen wilayah Bali & Nusa Tenggara akan segera ditambahkan.</p>
+            <a href="layanan.html" class="btn btn-primary btn-sm" style="margin-top:12px;">Daftar Jadi Agen →</a>
+          </div>
+        </div>
+      </div>
+      <div class="region-item">
+        <button class="region-header" onclick="toggleRegion(this)">
+          <span class="region-icon">🌊</span>
+          <span class="region-name">Sulawesi</span>
+          <span class="region-count">— agen</span>
+          <span class="region-chevron">▼</span>
+        </button>
+        <div class="region-body">
+          <div class="agent-placeholder">
+            <p>Data agen wilayah Sulawesi akan segera ditambahkan.</p>
+            <a href="layanan.html" class="btn btn-primary btn-sm" style="margin-top:12px;">Daftar Jadi Agen →</a>
+          </div>
+        </div>
+      </div>
+      <div class="region-item">
+        <button class="region-header" onclick="toggleRegion(this)">
+          <span class="region-icon">🦜</span>
+          <span class="region-name">Maluku &amp; Papua</span>
+          <span class="region-count">— agen</span>
+          <span class="region-chevron">▼</span>
+        </button>
+        <div class="region-body">
+          <div class="agent-placeholder">
+            <p>Data agen wilayah Maluku & Papua akan segera ditambahkan.</p>
+            <a href="layanan.html" class="btn btn-primary btn-sm" style="margin-top:12px;">Daftar Jadi Agen →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.map-placeholder { background:linear-gradient(135deg,#e8f5ee,#d4ede0); border-radius:20px; padding:60px 40px; text-align:center; position:relative; min-height:220px; overflow:hidden; margin-bottom:48px; border:2px dashed rgba(45,122,79,0.25); }
+.map-label { font-size:24px; font-weight:700; color:#1A3D2B; }
+.map-dots { position:absolute; inset:0; pointer-events:none; }
+.map-dot { position:absolute; font-size:20px; color:#2D7A4F; opacity:0.6; }
+.region-accordion { display:flex; flex-direction:column; gap:12px; }
+.region-item { background:#fff; border-radius:14px; border:1.5px solid rgba(0,0,0,0.08); overflow:hidden; }
+.region-item.active { border-color:rgba(45,122,79,0.35); }
+.region-header { width:100%; display:flex; align-items:center; gap:14px; padding:20px 24px; background:none; border:none; cursor:pointer; text-align:left; font-family:inherit; }
+.region-header:hover { background:#f8fdf9; }
+.region-icon { font-size:22px; }
+.region-name { font-size:16px; font-weight:700; color:#1A3D2B; flex:1; }
+.region-count { font-size:13px; color:#7a9485; }
+.region-chevron { font-size:12px; color:#2D7A4F; transition:transform 0.25s; }
+.region-item.active .region-chevron { transform:rotate(180deg); }
+.region-body { display:none; padding:0 24px 24px; }
+.agent-placeholder { background:#f8fdf9; border-radius:10px; padding:20px 24px; border:1px dashed rgba(45,122,79,0.25); }
+.agent-placeholder p { font-size:14px; color:#7a9485; margin:0; }
+</style>
+
+<script>
+function toggleRegion(btn) {
+  const item = btn.closest('.region-item');
+  const body = item.querySelector('.region-body');
+  const isActive = item.classList.contains('active');
+  item.classList.toggle('active', !isActive);
+  body.style.display = isActive ? 'none' : 'block';
+}
+</script>
+
+<section class="cta-banner">
+  <div class="container">
+    <h2 class="section-title">Partner with Us</h2>
+    <p>Whether you're a buyer, investor, or farmer — there's a place for you in the Rumah Mocaf ecosystem.</p>
+    <div class="cta-actions">
+      <a href="mailto:info@rumahmocaf.co.id" class="btn btn-white">✉ Email Us Directly</a>
+      <a href="https://wa.me/6281234567890" target="_blank" class="btn btn-outline" style="border-color:rgba(255,255,255,0.5);color:#fff;">💬 WhatsApp →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><div class="footer-logo-icon">RM</div><div class="footer-logo-text">Rumah Mocaf<span>Indonesia</span></div></div>
+        <p class="footer-tagline">Empowering Cassava Farmers, Producing Quality Mocaf Flour.</p>
+        <div class="social-links"><a href="#" class="social-link">f</a><a href="#" class="social-link">▶</a><a href="#" class="social-link">in</a><a href="#" class="social-link">◉</a></div>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="tentang-kami.html">About Us</a></li><li><a href="ekosistem.html">Ecosystem</a></li><li><a href="produk.html">Products</a></li><li><a href="keberlanjutan.html">Sustainability</a></li><li><a href="berita.html">News & Insights</a></li><li><a href="kontak.html">Contact</a></li></ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Products</div>
+        <ul class="footer-links"><li><a href="produk.html">Mocaf Flour</a></li><li><a href="produk.html">Cookies & Snacks</a></li><li><a href="produk.html">Bulk B2B</a></li><li><a href="https://mocafine.com" target="_blank" class="external" style="color:rgba(255,255,255,.85);font-weight:600;">Shop Online</a></li></ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-contact-item"><div class="footer-contact-icon">✉</div><div class="footer-contact-text"><a href="mailto:info@rumahmocaf.co.id" style="color:rgba(255,255,255,.65);">info@rumahmocaf.co.id</a></div></div>
+        <div class="footer-contact-item"><div class="footer-contact-icon">💬</div><div class="footer-contact-text"><a href="https://wa.me/6281234567890" style="color:rgba(255,255,255,.65);">WhatsApp — Click to Chat</a></div></div>
+        <div class="footer-contact-item"><div class="footer-contact-icon">📍</div><div class="footer-contact-text">Banjarnegara, Central Java, Indonesia</div></div>
+        <div class="footer-newsletter"><p>Stay updated with our latest news</p><div class="newsletter-form"><input type="email" placeholder="Your email address" /><button>Subscribe</button></div></div>
+      </div>
+    </div>
+    <div class="footer-bottom"><div>© 2025 Rumah Mocaf Indonesia. All rights reserved.</div><div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div></div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type=submit]');
+  btn.textContent = '✓ Message Sent!';
+  btn.style.background = '#10b981';
+  btn.disabled = true;
+  setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; btn.disabled = false; }, 3000);
+}
+</script>
+</body>
+</html>

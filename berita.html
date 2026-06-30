@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News & Insights — Rumah Mocaf Indonesia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <img src="images/logo rumah mocaf.png" alt="Rumah Mocaf Indonesia" style="height:62px;width:auto;" />
+      </a>
+      <ul class="navbar-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="tentang-kami.html">About Us</a></li>
+        <li><a href="ekosistem.html">Ecosystem</a></li>
+        <li><a href="produk.html">Products</a></li>
+        
+        <li><a href="keberlanjutan.html">Sustainability</a></li>
+        <li><a href="berita.html" class="active">News</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <a href="kontak.html" class="btn btn-outline btn-sm">Contact Us</a>
+        <a href="https://mocafine.com" target="_blank" class="btn btn-primary btn-sm">Shop</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="index.html">Home</a><a href="tentang-kami.html">About Us</a><a href="ekosistem.html">Ecosystem</a><a href="produk.html">Products</a><a href="keberlanjutan.html">Sustainability</a><a href="berita.html">News</a>
+  <div class="mobile-drawer-actions"><a href="kontak.html" class="btn btn-outline">Contact Us</a><a href="https://mocafine.com" target="_blank" class="btn btn-primary">Shop</a></div>
+</div>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="section-label">News & Insights</span>
+    <h1>Latest News from<br/>Rumah Mocaf</h1>
+    <p>Follow our journey — from the cassava fields of Banjarnegara to the international stage, from product innovation to real social impact.</p>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section class="section">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:32px;margin-bottom:16px;" class="featured-grid">
+      <div class="news-card" style="border-radius:var(--radius-lg);overflow:hidden;">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e8f5e9,#e3f2fd);aspect-ratio:16/7;font-size:72px;">
+          🏭
+          <div class="news-cat-badge"><span class="badge badge-blue">Exhibition</span></div>
+        </div>
+        <div class="news-body" style="padding:28px;">
+          <div class="news-meta">April 15, 2025 · 4 min read</div>
+          <div class="news-title" style="font-size:22px;margin-bottom:12px;">Rumah Mocaf at Hannover Messe: Bringing Premium Mocaf to Europe</div>
+          <p class="news-excerpt" style="font-size:15px;margin-bottom:20px;">Rumah Mocaf Indonesia represented the nation at Hannover Messe Germany, one of the world's largest industrial trade fairs, introducing premium mocaf flour to buyers and distributors from over 50 countries. Our presence at Hannover marks a historic milestone in bringing a local Indonesian product to the global stage...</p>
+          <a href="#" class="btn btn-primary btn-sm">Read Full Article →</a>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div class="news-card">
+          <div class="news-thumb" style="background:linear-gradient(135deg,#fff3e0,#fce4ec);aspect-ratio:16/6;">
+            👶
+            <div class="news-cat-badge"><span class="badge badge-green">Community</span></div>
+          </div>
+          <div class="news-body">
+            <div class="news-meta">March 2, 2025 · 6 min read</div>
+            <div class="news-title">From Field to Table: How Mocaf Flour Helps Reduce Stunting</div>
+            <p class="news-excerpt">The high nutritional content of mocaf flour is becoming a new hope in the fight against childhood stunting...</p>
+            <a href="#" class="news-read">Read More →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-thumb" style="background:linear-gradient(135deg,#f3e5f5,#e8f5e9);aspect-ratio:16/6;">
+            👩‍🌾
+            <div class="news-cat-badge"><span class="badge" style="background:#9c27b0;color:#fff;">Community</span></div>
+          </div>
+          <div class="news-body">
+            <div class="news-meta">February 18, 2025 · 5 min read</div>
+            <div class="news-title">Women Farmers of Banjarnegara: Driving Household Food Security</div>
+            <p class="news-excerpt">The story of women farmers who have become an integral part of the Rumah Mocaf ecosystem...</p>
+            <a href="#" class="news-read">Read More →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALL ARTICLES -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="news-header">
+      <div>
+        <span class="section-label">All Articles</span>
+        <h2 class="section-title">News & Insights</h2>
+      </div>
+    </div>
+    <div class="news-filter">
+      <button class="filter-btn active">All</button>
+      <button class="filter-btn">Exhibition</button>
+      <button class="filter-btn">Products</button>
+      <button class="filter-btn">Community</button>
+      <button class="filter-btn">Sustainability</button>
+      <button class="filter-btn">Research</button>
+    </div>
+    <div class="news-grid">
+      <div class="news-card">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e8f5e9,#e3f2fd);">🏭
+          <div class="news-cat-badge"><span class="badge badge-blue">Exhibition</span></div>
+        </div>
+        <div class="news-body">
+          <div class="news-meta">April 15, 2025 · 4 min read</div>
+          <div class="news-title">Rumah Mocaf at Hannover Messe: Bringing Mocaf to the European Market</div>
+          <p class="news-excerpt">Rumah Mocaf represented Indonesia at Hannover Messe Germany, introducing premium mocaf flour to buyers from over 50 countries...</p>
+          <a href="#" class="news-read">Read More →</a>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#fff3e0,#fce4ec);">👶
+          <div class="news-cat-badge"><span class="badge badge-green">Community</span></div>
+        </div>
+        <div class="news-body">
+          <div class="news-meta">March 2, 2025 · 6 min read</div>
+          <div class="news-title">From Field to Table: How Mocaf Flour Helps Reduce Stunting</div>
+          <p class="news-excerpt">The high nutritional content of mocaf flour is becoming a new hope in the fight against childhood stunting in Banjarnegara...</p>
+          <a href="#" class="news-read">Read More →</a>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#f3e5f5,#e8f5e9);">👩‍🌾
+          <div class="news-cat-badge"><span class="badge" style="background:#9c27b0;color:#fff;">Community</span></div>
+        </div>
+        <div class="news-body">
+          <div class="news-meta">February 18, 2025 · 5 min read</div>
+          <div class="news-title">Women Farmers of Banjarnegara: Driving Household Food Security</div>
+          <p class="news-excerpt">The story of women farmers who have become an integral part of the Rumah Mocaf ecosystem, leading change in their communities...</p>
+          <a href="#" class="news-read">Read More →</a>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e8f4fc,#e8f5e9);">🌾
+          <div class="news-cat-badge"><span class="badge" style="background:var(--blue);color:#fff;">Research</span></div>
+        </div>
+        <div class="news-body">
+          <div class="news-meta">January 10, 2025 · 7 min read</div>
+          <div class="news-title">Mocaf vs. Wheat Flour: A Full Nutritional Comparison</div>
+          <p class="news-excerpt">An in-depth analysis of the nutritional content of mocaf flour compared to wheat flour — which one wins for a healthy lifestyle?</p>
+          <a href="#" class="news-read">Read More →</a>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#fff8e1,#e8f5e9);">📊
+          <div class="news-cat-badge"><span class="badge badge-green">Products</span></div>
+        </div>
+        <div class="news-body">
+          <div class="news-meta">December 5, 2024 · 4 min read</div>
+          <div class="news-title">Rumah Mocaf Achieves 27% National Digital Market Share</div>
+          <p class="news-excerpt">Reaching #3 in the national digital market, Rumah Mocaf proves that locally made products can compete powerfully in the e-commerce era...</p>
+          <a href="#" class="news-read">Read More →</a>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e8f5e9,#fff3e0);">🇸🇦
+          <div class="news-cat-badge"><span class="badge badge-blue">Exhibition</span></div>
+        </div>
+        <div class="news-body">
+          <div class="news-meta">November 20, 2024 · 3 min read</div>
+          <div class="news-title">Amazing Indonesia in Jeddah: Mocaf Meets the Middle Eastern Market</div>
+          <p class="news-excerpt">Rumah Mocaf's participation in Amazing Indonesia Jeddah opened exciting export opportunities in the high-potential Middle Eastern halal market...</p>
+          <a href="#" class="news-read">Read More →</a>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:40px;text-align:center;">
+      <button class="btn btn-outline">Load More Articles</button>
+    </div>
+  </div>
+</section>
+
+<!-- MEDIA COVERAGE -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:40px;">
+      <span class="section-label">Media Coverage</span>
+      <h2 class="section-title">Pernah Diliput Oleh</h2>
+      <p class="section-subtitle">Rumah Mocaf telah mendapat perhatian dari berbagai media nasional terkemuka.</p>
+    </div>
+    <div class="media-coverage-grid">
+      <div class="media-cov-card"><div class="media-cov-name">Metro TV</div><div class="media-cov-type">Televisi Nasional</div></div>
+      <div class="media-cov-card"><div class="media-cov-name">Republika</div><div class="media-cov-type">Media Cetak &amp; Online</div></div>
+      <div class="media-cov-card"><div class="media-cov-name">Antara</div><div class="media-cov-type">Kantor Berita Nasional</div></div>
+      <div class="media-cov-card"><div class="media-cov-name">Kompas</div><div class="media-cov-type">Media Cetak &amp; Online</div></div>
+      <div class="media-cov-card"><div class="media-cov-name">SINDOnews</div><div class="media-cov-type">Media Online</div></div>
+      <div class="media-cov-card"><div class="media-cov-name">Media Indonesia</div><div class="media-cov-type">Media Cetak &amp; Online</div></div>
+      <div class="media-cov-card"><div class="media-cov-name">WartaTani.co</div><div class="media-cov-type">Media Pertanian</div></div>
+      <div class="media-cov-card"><div class="media-cov-name">GATRA.com</div><div class="media-cov-type">Majalah &amp; Online</div></div>
+      <div class="media-cov-card"><div class="media-cov-name">iNews TV</div><div class="media-cov-type">Televisi</div></div>
+      <div class="media-cov-card"><div class="media-cov-name">Warta Ekonomi</div><div class="media-cov-type">Media Bisnis</div></div>
+      <div class="media-cov-card"><div class="media-cov-name">Tribun Timur</div><div class="media-cov-type">Media Regional</div></div>
+      <div class="media-cov-card media-cov-card--featured"><div class="media-cov-name">MURI</div><div class="media-cov-type">Museum Rekor Indonesia</div></div>
+    </div>
+  </div>
+</section>
+<style>
+.media-coverage-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.media-cov-card { background: #fff; border-radius: 12px; padding: 24px 20px; text-align: center; border: 1.5px solid rgba(0,0,0,0.07); box-shadow: 0 1px 4px rgba(0,0,0,0.04); transition: border-color 0.2s, transform 0.2s; }
+.media-cov-card:hover { border-color: rgba(45,122,79,0.3); transform: translateY(-2px); }
+.media-cov-card--featured { border-color: rgba(45,122,79,0.3); background: #f5fbf7; }
+.media-cov-name { font-size: 16px; font-weight: 700; color: #1A3D2B; margin-bottom: 6px; }
+.media-cov-type { font-size: 12px; color: #7a9485; }
+</style>
+
+<section class="cta-banner">
+  <div class="container">
+    <h2 class="section-title">Interested in Our Products?</h2>
+    <p>After reading our stories and insights, experience the quality of Rumah Mocaf's premium cassava products for yourself.</p>
+    <div class="cta-actions">
+      <a href="produk.html" class="btn btn-white">🛒 See Products</a>
+      <a href="kontak.html" class="btn btn-outline" style="border-color:rgba(255,255,255,0.5);color:#fff;">Contact Us →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><div class="footer-logo-icon">RM</div><div class="footer-logo-text">Rumah Mocaf<span>Indonesia</span></div></div>
+        <p class="footer-tagline">Empowering Cassava Farmers, Producing Quality Mocaf Flour.</p>
+        <div class="social-links"><a href="#" class="social-link">f</a><a href="#" class="social-link">▶</a><a href="#" class="social-link">in</a><a href="#" class="social-link">◉</a></div>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="tentang-kami.html">About Us</a></li><li><a href="ekosistem.html">Ecosystem</a></li><li><a href="produk.html">Products</a></li><li><a href="keberlanjutan.html">Sustainability</a></li><li><a href="berita.html">News & Insights</a></li><li><a href="kontak.html">Contact</a></li></ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Products</div>
+        <ul class="footer-links"><li><a href="produk.html">Mocaf Flour</a></li><li><a href="produk.html">Cookies & Snacks</a></li><li><a href="produk.html">Bulk B2B</a></li><li><a href="https://mocafine.com" target="_blank" class="external" style="color:rgba(255,255,255,.85);font-weight:600;">Shop Online</a></li></ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-contact-item"><div class="footer-contact-icon">✉</div><div class="footer-contact-text"><a href="mailto:info@rumahmocaf.co.id" style="color:rgba(255,255,255,.65);">info@rumahmocaf.co.id</a></div></div>
+        <div class="footer-contact-item"><div class="footer-contact-icon">📍</div><div class="footer-contact-text">Banjarnegara, Central Java, Indonesia</div></div>
+        <div class="footer-newsletter"><p>Stay updated with our latest news</p><div class="newsletter-form"><input type="email" placeholder="Your email address" /><button>Subscribe</button></div></div>
+      </div>
+    </div>
+    <div class="footer-bottom"><div>© 2025 Rumah Mocaf Indonesia. All rights reserved.</div><div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div></div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<style>
+@media (max-width: 768px) { .featured-grid { grid-template-columns: 1fr !important; } }
+</style>
+</body>
+</html>
