@@ -15,25 +15,34 @@ export default function HomePage() {
       '/video-animasi/livestock-farmers.json',
     ];
     let alive = true;
-    (async () => {
-      try {
-        const { default: lottie } = await import('lottie-web');
-        const datas = await Promise.all(paths.map(p => fetch(p).then(r => r.json())));
-        if (!alive) return;
-        containers.forEach((container, i) => {
-          lottie.loadAnimation({
-            container,
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            animationData: datas[i],
-            rendererSettings: { preserveAspectRatio: 'xMidYMid slice' },
+    function runLottie() {
+      const lottie = (window as any).lottie;
+      if (!lottie) return;
+      Promise.all(paths.map(p => fetch(p).then(r => r.json())))
+        .then(datas => {
+          if (!alive) return;
+          containers.forEach((container, i) => {
+            lottie.loadAnimation({
+              container,
+              renderer: 'svg',
+              loop: true,
+              autoplay: true,
+              animationData: datas[i],
+              rendererSettings: { preserveAspectRatio: 'xMidYMid slice' },
+            });
           });
-        });
-      } catch (e) {
-        console.error('Lottie init error:', e);
-      }
-    })();
+        })
+        .catch(e => console.error('Lottie fetch error:', e));
+    }
+    if ((window as any).lottie) {
+      runLottie();
+    } else {
+      const s = document.createElement('script');
+      s.src = '/lottie.min.js';
+      s.onload = runLottie;
+      s.onerror = () => console.error('Failed to load lottie');
+      document.head.appendChild(s);
+    }
     return () => { alive = false; };
   }, []);
 
