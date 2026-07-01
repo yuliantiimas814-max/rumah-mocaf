@@ -32,6 +32,7 @@ export default function AboutPage() {
       });
       function onJourneyScroll() {
         if (userClicked) return;
+        if (!journeyWrapper) return;
         const rect = journeyWrapper.getBoundingClientRect();
         const scrolled = -rect.top;
         const scrollable = journeyWrapper.offsetHeight - window.innerHeight;
