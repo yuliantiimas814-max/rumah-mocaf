@@ -294,25 +294,37 @@ export default function HomePage() {
       // Position pins immediately (CSS keeps them invisible via scale(0))
       placeAll();
       window.addEventListener('resize', placeAll);
-      // Trigger CSS animation class when section scrolls into view
-      let triggered = false;
-      function onScroll() {
-        if (triggered) return;
-        const rect = mapSection!.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-          triggered = true;
-          pinData.forEach(({ pinEl, lblEl, delay }) => {
-            if (!pinEl || !lblEl) return;
-            pinEl.style.animationDelay = delay;
-            pinEl.classList.add('pin-animate');
-            lblEl.style.animationDelay = `calc(${delay} + 500ms)`;
-            lblEl.classList.add('pin-label-animate');
+      // Pins appear one-by-one scrolling down, disappear scrolling back up
+      const mapWrapper = document.getElementById('mapSectionWrapper') as HTMLElement | null;
+      const THRESHOLDS = [0, 0.12, 0.24, 0.36, 0.48, 0.60, 0.72, 0.84];
+      const pinStates = pinData.map((p, i) => ({ ...p, threshold: THRESHOLDS[i] ?? 0, shown: false }));
+      function onScrollPin() {
+        if (!mapWrapper) return;
+        const wRect = mapWrapper.getBoundingClientRect();
+        if (wRect.top > 0) {
+          // Above sticky zone — hide all
+          pinStates.forEach((p) => {
+            if (!p.shown) return;
+            p.shown = false;
+            if (p.pinEl) p.pinEl.classList.remove('pin-animate');
+            if (p.lblEl) p.lblEl.classList.remove('pin-label-animate');
           });
-          window.removeEventListener('scroll', onScroll);
+          return;
         }
+        const progress = Math.min(1, (-wRect.top) / (mapWrapper.offsetHeight - window.innerHeight));
+        pinStates.forEach((p) => {
+          if (!p.shown && progress >= p.threshold) {
+            p.shown = true;
+            if (p.pinEl) { p.pinEl.style.animationDelay = '0ms'; p.pinEl.classList.add('pin-animate'); }
+            if (p.lblEl) { p.lblEl.style.animationDelay = '300ms'; p.lblEl.classList.add('pin-label-animate'); }
+          } else if (p.shown && progress < p.threshold) {
+            p.shown = false;
+            if (p.pinEl) p.pinEl.classList.remove('pin-animate');
+            if (p.lblEl) p.lblEl.classList.remove('pin-label-animate');
+          }
+        });
       }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll(); // check immediately if already in view
+      window.addEventListener('scroll', onScrollPin, { passive: true });
     })();
 
     // Media partner ticker
@@ -469,7 +481,8 @@ export default function HomePage() {
         .tcs-hex img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
         @media (max-width:900px){.tcs-deck{height:360px}.tcs-card{padding:40px 36px;gap:28px}.tcs-hex{width:150px;height:240px}}
         @media (max-width:768px){.tcs-wrap{height:auto}.tcs-sticky{position:relative;height:auto;padding:80px 0 60px;overflow:visible}.tcs-deck{height:480px}.tcs-card{flex-direction:column;padding:36px 24px;gap:20px;align-items:flex-start}.tcs-hex{width:130px;height:210px}}
-        .map-section{position:relative;height:100vh;overflow:hidden;z-index:2;background:#0B1E40}
+        #mapSectionWrapper{height:250vh;}
+        .map-section{position:sticky;top:0;height:100vh;overflow:hidden;z-index:2;background:#0B1E40}
         .map-img{width:100%;height:100%;display:block;object-fit:cover;object-position:center 62%}
         .map-heading-bar{position:absolute;top:0;left:0;right:0;height:40%;background:linear-gradient(to bottom,#0B1E40 55%,transparent 100%);display:flex;flex-direction:column;align-items:center;padding-top:130px;z-index:10;pointer-events:none}
         .map-heading-bar h2{font-size:clamp(20px,2.4vw,36px);font-weight:800;color:#fff;margin:0 0 14px;letter-spacing:-0.01em}
@@ -692,6 +705,7 @@ export default function HomePage() {
       </div>
 
       {/* MAP SECTION */}
+      <div id="mapSectionWrapper">
       <div className="map-section" id="mapSection">
           <div className="map-heading-bar"><h2>International Buyers</h2><hr /></div>
           <img src="/MAP.svg" alt="Rumah Mocaf — World Reach" className="map-img" id="mapImg" />
@@ -767,6 +781,7 @@ export default function HomePage() {
               <g clipPath="url(#c-gb)"><rect x="13" y="13" width="51" height="51" fill="#012169" /><line x1="13" y1="13" x2="64" y2="64" stroke="white" strokeWidth="10" /><line x1="64" y1="13" x2="13" y2="64" stroke="white" strokeWidth="10" /><line x1="13" y1="13" x2="64" y2="64" stroke="#C8102E" strokeWidth="5" /><line x1="64" y1="13" x2="13" y2="64" stroke="#C8102E" strokeWidth="5" /><rect x="13" y="32" width="51" height="13" fill="white" /><rect x="32" y="13" width="13" height="51" fill="white" /><rect x="13" y="34.5" width="51" height="8" fill="#C8102E" /><rect x="34.5" y="13" width="8" height="51" fill="#C8102E" /></g>
             </svg>
           </div>
+      </div>
       </div>
 
       {/* MEDIA PARTNER */}

@@ -1,13 +1,1 @@
-node_modules/
-.next/
-.git/
-
-# Video terlalu besar (>100MB)
-Video/Full.mp4
 public/Video/Full.mp4
-nextjs-app/
-
-# Folder sumber (tidak dipakai website)
-Video Animasi v1/
-Video Animasi/
-Video Animasi rumah Mocaf/

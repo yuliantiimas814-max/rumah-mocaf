@@ -141,22 +141,78 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section">
-        <div className="container">
-          <div className="two-col">
-            <div className="two-col-img" style={{ padding: 0, overflow: 'hidden', background: 'none' }}>
-              <img src="/images/history rumah mocaf.jpg" alt="History Rumah Mocaf" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', borderRadius: 'var(--radius-lg)' }} />
-            </div>
-            <div className="two-col-text">
-              <span className="section-label">History</span>
-              <h3>From Banjarnegara, for Indonesia</h3>
-              <p>Rumah Mocaf Indonesia was founded in 2017 in Banjarnegara, Central Java — a cassava-rich region where farmers still struggled with volatile prices and limited market access.</p>
-              <p>We started with one simple yet powerful vision: to build an ecosystem connecting farmers with consumers through high-quality mocaf products. From a single small processing unit, Rumah Mocaf has grown into a leading player in the Indonesian mocaf market.</p>
-              <a href="#timeline" className="btn btn-outline">See Our Journey →</a>
-            </div>
+      <div id="journeyWrapper" style={{ height:'700vh' }}>
+      <section id="timeline" style={{ background: '#f7f8f5', height:'calc(100vh - 80px)', display:'flex', flexDirection:'column', overflow:'hidden', position:'sticky', top:'80px' }}>
+        <style dangerouslySetInnerHTML={{ __html: `
+          .gj-wrap { display:flex; flex:1; overflow:hidden; }
+          .gj-left { width:200px; flex-shrink:0; display:flex; flex-direction:column; justify-content:center; padding:60px 0; gap:0; border-right:1px solid rgba(0,0,0,0.08); }
+          .gj-year-btn { display:block; width:100%; background:none; border:none; cursor:pointer; padding:10px 16px 10px 48px; font-size:14px; font-weight:600; color:#bbb; transition:color 0.25s,background 0.25s; border-radius:0; text-align:left; }
+          .gj-year-btn.active { color:#1A3D2B; background:rgba(45,122,79,0.12); }
+          .gj-center { flex:1; display:flex; flex-direction:column; justify-content:center; padding:80px 60px; max-width:480px; }
+          .gj-big-year { font-size:clamp(32px,4vw,52px); font-weight:900; color:#1A3D2B; line-height:1; letter-spacing:-1px; margin-bottom:16px; }
+          .gj-sub { font-size:11px; font-weight:700; color:#2D7A4F; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:20px; }
+          .gj-desc { font-size:15px; color:#3a5040; line-height:1.8; max-width:380px; }
+          .gj-right { flex:1; position:relative; overflow:hidden; min-height:500px; }
+          .gj-right img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 0.5s ease; }
+          .gj-right img.active { opacity:1; }
+          .gj-panel { display:none; }
+          .gj-panel.active { display:block; }
+          @media (max-width:900px) {
+            .gj-wrap { flex-direction:column; min-height:auto; }
+            .gj-left { flex-direction:row; width:auto; padding:24px 20px; border-right:none; border-bottom:1px solid rgba(0,0,0,0.08); gap:8px; flex-wrap:wrap; }
+            .gj-year-btn.active::before { display:none; }
+            .gj-year-btn.active { border-bottom:2px solid #1A3D2B; padding-bottom:6px; }
+            .gj-right { min-height:260px; }
+            .gj-center { padding:40px 24px; max-width:100%; }
+          }
+        `}} />
+        <div style={{ padding:'16px 48px 0', borderBottom:'1px solid rgba(0,0,0,0.08)' }}>
+          <h2 style={{ fontSize:'clamp(32px,4vw,48px)', fontWeight:800, color:'#1A3D2B', margin:'0', textAlign:'left' }}>Our Journey</h2>
+        </div>
+        <div className="gj-wrap">
+          {/* Left: year list */}
+          <div className="gj-left">
+            {['2017','2018','2019','2020','2021–2022','2023','2024–NOW'].map((y, i) => (
+              <button key={y} className={`gj-year-btn${i === 0 ? ' active' : ''}`} data-gj={i}>{y}</button>
+            ))}
+          </div>
+
+          {/* Center: content panels */}
+          <div className="gj-center">
+            {[
+              { year:'2017', sub:'The Beginning', desc:'Rumah Mocaf Indonesia was established with modest capital but enormous drive to empower local cassava farmers in Banjarnegara, Central Java.' },
+              { year:'2018', sub:'Farmer Ecosystem', desc:'We began recruiting and training partner farmers, establishing a fair-price purchasing system that replaced exploitative middlemen.' },
+              { year:'2019', sub:'Certification & Standards', desc:'Obtained halal and BPOM certifications. Standardized the production process to meet modern retail and export quality requirements.' },
+              { year:'2020', sub:'Product Expansion', desc:'Launched the Mocafine product line and began digital sales. Thrived through the pandemic thanks to a resilient local ecosystem.' },
+              { year:'2021–2022', sub:'International Debut', desc:'First international appearances at SIAL Interfood Indonesia and MIHAS Malaysia. Mocaf products attracted buyers from multiple countries.' },
+              { year:'2023', sub:'European Market', desc:'Presented at Hannover Messe Germany, introducing mocaf to Europe. Achieved #3 national digital market share at ~27%.' },
+              { year:'2024–NOW', sub:'Global Expansion', desc:'Exhibited at FHA Singapore, Odicoff Turkiye, TEI 40th, and Amazing Indonesia Jeddah. Ecosystem now spans 625+ farmers, 265+ craftsmen, 124+ youth innovators.' },
+            ].map((t, i) => (
+              <div key={t.year} className={`gj-panel${i === 0 ? ' active' : ''}`} data-gj={i}>
+                <div className="gj-big-year">{t.year}</div>
+                <div className="gj-sub">{t.sub}</div>
+                <p className="gj-desc">{t.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Right: photos */}
+          <div className="gj-right">
+            {[
+              '/images/history rumah mocaf.jpg',
+              '/images/petani rumah mocaf.jpg',
+              '/images/komunitas.jpg',
+              '/images/foto-produk/Mocafine.png',
+              '/images/internasional inovator 1.jpeg',
+              '/images/internasional inovator 1.jpeg',
+              '/images/craftsmen.jpg',
+            ].map((src, i) => (
+              <img key={i} src={src} alt="" data-gj={i} className={i === 0 ? 'active' : ''} />
+            ))}
           </div>
         </div>
       </section>
+      </div>
 
       <section className="section section-green">
         <div className="container">
@@ -202,79 +258,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      <div id="journeyWrapper" style={{ height:'700vh' }}>
-      <section id="timeline" style={{ background: '#f7f8f5', height:'calc(100vh - 80px)', display:'flex', flexDirection:'column', overflow:'hidden', position:'sticky', top:'80px' }}>
-        <style dangerouslySetInnerHTML={{ __html: `
-          .gj-wrap { display:flex; flex:1; overflow:hidden; }
-          .gj-left { width:200px; flex-shrink:0; display:flex; flex-direction:column; justify-content:center; padding:60px 0; gap:0; border-right:1px solid rgba(0,0,0,0.08); }
-          .gj-year-btn { display:block; width:100%; background:none; border:none; cursor:pointer; padding:10px 16px 10px 48px; font-size:14px; font-weight:600; color:#bbb; transition:color 0.25s,background 0.25s; border-radius:0; text-align:left; }
-          .gj-year-btn.active { color:#1A3D2B; background:rgba(45,122,79,0.12); }
-          .gj-center { flex:1; display:flex; flex-direction:column; justify-content:center; padding:80px 60px; max-width:480px; }
-          .gj-big-year { font-size:clamp(32px,4vw,52px); font-weight:900; color:#1A3D2B; line-height:1; letter-spacing:-1px; margin-bottom:16px; }
-          .gj-sub { font-size:11px; font-weight:700; color:#2D7A4F; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:20px; }
-          .gj-desc { font-size:15px; color:#3a5040; line-height:1.8; max-width:380px; }
-          .gj-right { flex:1; position:relative; overflow:hidden; min-height:500px; }
-          .gj-right img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 0.5s ease; }
-          .gj-right img.active { opacity:1; }
-          .gj-panel { display:none; }
-          .gj-panel.active { display:block; }
-          @media (max-width:900px) {
-            .gj-wrap { flex-direction:column; min-height:auto; }
-            .gj-left { flex-direction:row; width:auto; padding:24px 20px; border-right:none; border-bottom:1px solid rgba(0,0,0,0.08); gap:8px; flex-wrap:wrap; }
-            .gj-year-btn.active::before { display:none; }
-            .gj-year-btn.active { border-bottom:2px solid #1A3D2B; padding-bottom:6px; }
-            .gj-right { min-height:260px; }
-            .gj-center { padding:40px 24px; max-width:100%; }
-          }
-        `}} />
-        <div style={{ padding:'16px 48px 0', borderBottom:'1px solid rgba(0,0,0,0.08)' }}>
-          <h2 style={{ fontSize:'clamp(32px,4vw,48px)', fontWeight:800, color:'#1A3D2B', margin:'0', textAlign:'left' }}>Our Journey</h2>
-        </div>
-        <div className="gj-wrap">
-          {/* Left: year list */}
-          <div className="gj-left">
-            {['2017','2018','2019','2020','2021–2022','2023','2024–2025'].map((y, i) => (
-              <button key={y} className={`gj-year-btn${i === 0 ? ' active' : ''}`} data-gj={i}>{y}</button>
-            ))}
-          </div>
-
-          {/* Center: content panels */}
-          <div className="gj-center">
-            {[
-              { year:'2017', sub:'The Beginning', desc:'Rumah Mocaf Indonesia was established with modest capital but enormous drive to empower local cassava farmers in Banjarnegara, Central Java.' },
-              { year:'2018', sub:'Farmer Ecosystem', desc:'We began recruiting and training partner farmers, establishing a fair-price purchasing system that replaced exploitative middlemen.' },
-              { year:'2019', sub:'Certification & Standards', desc:'Obtained halal and BPOM certifications. Standardized the production process to meet modern retail and export quality requirements.' },
-              { year:'2020', sub:'Product Expansion', desc:'Launched the Mocafine product line and began digital sales. Thrived through the pandemic thanks to a resilient local ecosystem.' },
-              { year:'2021–2022', sub:'International Debut', desc:'First international appearances at SIAL Interfood Indonesia and MIHAS Malaysia. Mocaf products attracted buyers from multiple countries.' },
-              { year:'2023', sub:'European Market', desc:'Presented at Hannover Messe Germany, introducing mocaf to Europe. Achieved #3 national digital market share at ~27%.' },
-              { year:'2024–2025', sub:'Global Expansion', desc:'Exhibited at FHA Singapore, Odicoff Turkiye, TEI 40th, and Amazing Indonesia Jeddah. Ecosystem now spans 625+ farmers, 265+ craftsmen, 124+ youth innovators.' },
-            ].map((t, i) => (
-              <div key={t.year} className={`gj-panel${i === 0 ? ' active' : ''}`} data-gj={i}>
-                <div className="gj-big-year">{t.year}</div>
-                <div className="gj-sub">{t.sub}</div>
-                <p className="gj-desc">{t.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Right: photos */}
-          <div className="gj-right">
-            {[
-              '/images/history rumah mocaf.jpg',
-              '/images/petani rumah mocaf.jpg',
-              '/images/komunitas.jpg',
-              '/images/foto-produk/Mocafine.png',
-              '/images/internasional inovator 1.jpeg',
-              '/images/internasional inovator 1.jpeg',
-              '/images/craftsmen.jpg',
-            ].map((src, i) => (
-              <img key={i} src={src} alt="" data-gj={i} className={i === 0 ? 'active' : ''} />
-            ))}
-          </div>
-        </div>
-      </section>
-      </div>
 
       {/* ACHIEVEMENTS */}
       <div id="achieveWrapper" style={{ height:'500vh' }}>
@@ -332,36 +315,6 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CERTIFICATIONS */}
-      <section className="section section-green">
-        <div className="container">
-          <div className="text-center">
-            <span className="section-label">Certifications</span>
-            <h2 className="section-title">Certifications &amp; Standards</h2>
-            <p className="section-subtitle">Our commitment to quality and sustainability is confirmed by certifications from trusted national and international bodies.</p>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: '20px', marginTop: '48px' }}>
-            {[
-              { img: '/images/Lisensi/HALAL.png', title: 'Halal MUI', desc: "Certified halal by the Indonesian Council of Ulama" },
-              { img: '/images/Lisensi/BPOM.png', title: 'BPOM', desc: "Registered with Indonesia's National Food & Drug Authority" },
-              { img: '/images/Lisensi/HACCP.png', title: 'HACCP', desc: 'Hazard Analysis Critical Control Point — food safety management' },
-              { img: '/images/Lisensi/PIRT.png', title: 'PIRT', desc: 'Pangan Industri Rumah Tangga — izin produksi pangan resmi' },
-              { img: '/images/Lisensi/ISO.png', title: 'ISO', desc: 'International Organization for Standardization — quality management' },
-              { img: '/images/Lisensi/Organic.png', title: 'Organic', desc: 'Verified organic production process' },
-              { img: '/images/Lisensi/Gluten Free.png', title: 'Gluten Free', desc: 'Independently verified gluten-free product' },
-            ].map((c) => (
-              <div key={c.title} style={{ background: '#fff', borderRadius: 'var(--radius)', padding: '24px', textAlign: 'center', boxShadow: 'var(--shadow-sm)' }}>
-                <div style={{ width: '64px', height: '64px', margin: '0 auto 12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src={c.img} alt={c.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                </div>
-                <div style={{ fontWeight: 700, color: 'var(--gray-800)', marginBottom: '6px' }}>{c.title}</div>
-                <div style={{ fontSize: '13px', color: 'var(--gray-400)' }}>{c.desc}</div>
-              </div>
-            ))}
           </div>
         </div>
       </section>

@@ -50,31 +50,6 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      <section className="section section-alt">
-        <div className="container">
-          <div className="text-center">
-            <span className="section-label">Comparison</span>
-            <h2 className="section-title">Mocaf Flour vs. Wheat Flour</h2>
-            <p className="section-subtitle">Why make the switch to mocaf? Here is a full side-by-side comparison.</p>
-          </div>
-          <table className="compare-table">
-            <thead>
-              <tr><th>Aspect</th><th>🌾 Mocaf Flour</th><th>Wheat Flour</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Gluten</td><td className="check">✓ 100% Gluten Free</td><td className="cross">✗ Contains Gluten</td></tr>
-              <tr><td>Raw Material</td><td className="check">✓ Local Indonesian Cassava</td><td className="cross">✗ Imported Wheat</td></tr>
-              <tr><td>Carbohydrate Content</td><td className="check">✓ Higher</td><td>High</td></tr>
-              <tr><td>Dietary Fiber</td><td className="check">✓ Higher</td><td>Low</td></tr>
-              <tr><td>Glycemic Index</td><td className="check">✓ Lower</td><td className="cross">✗ Higher</td></tr>
-              <tr><td>Environmental Impact</td><td className="check">✓ Local sourcing, zero-waste process</td><td className="cross">✗ Relies on imports</td></tr>
-              <tr><td>Supports Local Farmers</td><td className="check">✓ Directly empowers local farmers</td><td className="cross">✗ No local impact</td></tr>
-              <tr><td>Safe for Celiac / Gluten Sensitivity</td><td className="check">✓ Yes</td><td className="cross">✗ No</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
       <section className="section">
         <div className="container">
           <div className="text-center">
@@ -110,38 +85,28 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      <section className="section section-green" id="b2b">
+      <section className="section section-alt">
         <div className="container">
           <div className="text-center">
-            <span className="section-label">B2B / Bulk Order</span>
-            <h2 className="section-title">For Industry &amp; Wholesale</h2>
-            <p className="section-subtitle">We supply mocaf flour and derivative products in industrial packaging for food manufacturers, distributors, and retailers worldwide.</p>
+            <span className="section-label">Comparison</span>
+            <h2 className="section-title">Mocaf Flour vs. Wheat Flour</h2>
+            <p className="section-subtitle">Why make the switch to mocaf? Here is a full side-by-side comparison.</p>
           </div>
-          <div className="info-grid">
-            <div className="info-card">
-              <div className="info-card-icon">🌾</div>
-              <div className="info-card-title">Asoned Flour — 25kg</div>
-              <p className="info-card-desc">Multi-purpose Premix Fried Food Flour in 25kg sack packaging for large-scale culinary industry and food service operations.</p>
-              <div style={{ marginTop: '16px' }}><Link href="/contact" className="btn btn-primary btn-sm">Request Quote</Link></div>
-            </div>
-            <div className="info-card">
-              <div className="info-card-icon">🍞</div>
-              <div className="info-card-title">Master Bread — 25kg</div>
-              <p className="info-card-desc">Multi-purpose Premix Bread Flour, Best Quality. 25kg industrial packaging for bakeries, hotels, and food manufacturers.</p>
-              <div style={{ marginTop: '16px' }}><Link href="/contact" className="btn btn-primary btn-sm">Request Quote</Link></div>
-            </div>
-            <div className="info-card">
-              <div className="info-card-icon">📋</div>
-              <div className="info-card-title">B2B Documents</div>
-              <p className="info-card-desc">Available: Spec Sheets, Certificate of Analysis, Halal Certificate, and BPOM registration documents. Contact us to download or receive by email.</p>
-              <div style={{ marginTop: '16px' }}><Link href="/contact" className="btn btn-outline btn-sm">Get Documents</Link></div>
-            </div>
-          </div>
-          <div style={{ marginTop: '40px', textAlign: 'center', background: '#fff', borderRadius: 'var(--radius-lg)', padding: '40px', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto', boxShadow: 'var(--shadow-md)' }}>
-            <h3 style={{ fontSize: '22px', fontWeight: 700, color: 'var(--gray-800)', marginBottom: '8px' }}>Interested in a B2B Order?</h3>
-            <p style={{ color: 'var(--gray-600)', marginBottom: '24px', fontSize: '15px' }}>Contact our team to discuss pricing, MOQ, and partnership terms.</p>
-            <Link href="/contact" className="btn btn-primary">Inquire Now →</Link>
-          </div>
+          <table className="compare-table">
+            <thead>
+              <tr><th>Aspect</th><th>🌾 Mocaf Flour</th><th>Wheat Flour</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Gluten</td><td className="check">✓ 100% Gluten Free</td><td className="cross">✗ Contains Gluten</td></tr>
+              <tr><td>Raw Material</td><td className="check">✓ Local Indonesian Cassava</td><td className="cross">✗ Imported Wheat</td></tr>
+              <tr><td>Carbohydrate Content</td><td className="check">✓ Higher</td><td>High</td></tr>
+              <tr><td>Dietary Fiber</td><td className="check">✓ Higher</td><td>Low</td></tr>
+              <tr><td>Glycemic Index</td><td className="check">✓ Lower</td><td className="cross">✗ Higher</td></tr>
+              <tr><td>Environmental Impact</td><td className="check">✓ Local sourcing, zero-waste process</td><td className="cross">✗ Relies on imports</td></tr>
+              <tr><td>Supports Local Farmers</td><td className="check">✓ Directly empowers local farmers</td><td className="cross">✗ No local impact</td></tr>
+              <tr><td>Safe for Celiac / Gluten Sensitivity</td><td className="check">✓ Yes</td><td className="cross">✗ No</td></tr>
+            </tbody>
+          </table>
         </div>
       </section>
 

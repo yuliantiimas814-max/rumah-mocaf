@@ -5,35 +5,66 @@ import Link from 'next/link';
 
 export default function EcosystemPage() {
   useEffect(() => {
-    // Production process step animation
-    const stepsWrap = document.getElementById('processSteps');
-    if (stepsWrap) {
-      const steps = Array.from(stepsWrap.querySelectorAll('.process-step')) as HTMLElement[];
-      let current = 0;
-      let timer: ReturnType<typeof setInterval> | null = null;
-      function activate(index: number) {
-        steps.forEach((s, i) => s.classList.toggle('active', i <= index));
+    // Production process — scroll-driven video playback
+    let ppCleanup: (() => void) | undefined;
+    const ppStepBlocks = Array.from(document.querySelectorAll('.pp-step-block')) as HTMLElement[];
+    if (ppStepBlocks.length) {
+      const STEP_TO_VID = [0, 1, 2, 2, 2, 3, 3];
+      const ppVids = Array.from(document.querySelectorAll('.pp-vid')) as HTMLVideoElement[];
+      let lastScrollY = window.scrollY;
+      let activeIdx = -1;
+      let activeVidIdx = -1;
+
+      function activateStep(idx: number) {
+        const changed = idx !== activeIdx;
+        activeIdx = idx;
+        ppStepBlocks.forEach((b, i) => b.classList.toggle('active', i === idx));
+        const vi = STEP_TO_VID[idx] ?? 0;
+        const vidChanged = vi !== activeVidIdx;
+        activeVidIdx = vi;
+        ppVids.forEach((v, i) => v.classList.toggle('pp-vid-active', i === vi));
+        if (!changed || !vidChanged) return;
+        // New video: restart from beginning and play
+        const vid = ppVids[vi];
+        if (!vid) return;
+        const go = () => { vid.currentTime = 0; vid.playbackRate = 1; vid.play().catch(() => {}); };
+        if (vid.readyState >= 1) go();
+        else vid.addEventListener('loadedmetadata', go, { once: true });
       }
-      function startCycle() {
-        if (timer) return;
-        timer = setInterval(() => {
-          current++;
-          if (current >= steps.length) {
-            current = 0;
-            steps.forEach((s) => s.classList.remove('active'));
-            setTimeout(() => activate(current), 300);
-            return;
-          }
-          activate(current);
-        }, 1200);
-      }
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) startCycle();
-          else { if (timer) clearInterval(timer); timer = null; }
+
+      function updatePPActive() {
+        lastScrollY = window.scrollY;
+        const mid = window.innerHeight / 2;
+        let closest = 0, minDist = Infinity;
+        ppStepBlocks.forEach((b, i) => {
+          const r = b.getBoundingClientRect();
+          const dist = Math.abs(r.top + r.height / 2 - mid);
+          if (dist < minDist) { minDist = dist; closest = i; }
         });
-      }, { threshold: 0.3 });
-      obs.observe(stepsWrap);
+        activateStep(closest);
+      }
+
+      // IntersectionObserver: fire as soon as ≥50% of the step is visible
+      const ppIO = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.intersectionRatio < 0.5) return;
+          const idx = ppStepBlocks.indexOf(entry.target as HTMLElement);
+          if (idx === -1) return;
+          lastScrollY = window.scrollY;
+          activateStep(idx);
+        });
+      }, { threshold: [0, 0.5, 1] });
+      ppStepBlocks.forEach(b => ppIO.observe(b));
+
+      window.addEventListener('scroll', updatePPActive, { passive: true });
+      window.addEventListener('scrollend', updatePPActive, { passive: true });
+      updatePPActive();
+
+      ppCleanup = () => {
+        window.removeEventListener('scroll', updatePPActive);
+        window.removeEventListener('scrollend', updatePPActive);
+        ppIO.disconnect();
+      };
     }
 
     // Eco step navigation
@@ -60,21 +91,38 @@ export default function EcosystemPage() {
     }
     window.addEventListener('scroll', updateEcoSteps);
     updateEcoSteps();
+
+    return () => {
+      ppCleanup?.();
+      window.removeEventListener('scroll', updateEcoSteps);
+    };
   }, []);
 
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: `
-        .process-steps { display:flex;gap:0;margin-top:40px;flex-wrap:wrap; }
-        .process-step { flex:1;min-width:100px;text-align:center;position:relative; }
-        .process-step:not(:last-child)::after { content:'→';position:absolute;right:-10px;top:26px;font-size:18px;color:#ccc;font-weight:700;transition:color 0.4s;z-index:1; }
-        .process-step.active:not(:last-child)::after { color:var(--green); }
-        .process-icon { width:60px;height:60px;border-radius:50%;background:#f3f4f6;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;transition:background 0.4s,box-shadow 0.4s,transform 0.4s; }
-        .process-icon img { width:32px;height:32px;object-fit:contain;filter:grayscale(1) opacity(0.4);transition:filter 0.4s; }
-        .process-step.active .process-icon { background:#fff;box-shadow:0 0 0 6px rgba(45,122,79,0.15);transform:scale(1.12); }
-        .process-step.active .process-icon img { filter:none; }
-        .process-label { font-size:12px;font-weight:700;color:#aaa;transition:color 0.4s; }
-        .process-step.active .process-label { color:var(--green); }
+        html{scroll-snap-type:y proximity}
+        #ppSection{background:#fff}
+        .pp-container{display:flex;align-items:flex-start}
+        .pp-video-sticky{position:sticky;top:0;width:50%;height:100vh;overflow:hidden;background:#111;flex-shrink:0}
+        .pp-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.7s ease}
+        .pp-vid.pp-vid-active{opacity:1}
+        .pp-steps-scroll{width:50%;flex:1}
+        .pp-steps-header-block{padding:80px 52px 32px;position:sticky;top:0;background:#fff;z-index:5}
+        .pp-steps-header-block .section-label{margin-bottom:8px;display:inline-block}
+        .pp-steps-header-block h3{font-size:clamp(20px,2.2vw,28px);font-weight:800;color:#1a1a1a;margin:0}
+        .pp-step-block{height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 52px;border-top:1px solid #f0f0f0;opacity:0.22;transition:opacity 0.5s ease,transform 0.5s ease;transform:translateY(10px);scroll-snap-align:start}
+        .pp-step-block.active{opacity:1;transform:translateY(0)}
+        .pp-steps-scroll{width:50%;flex:1}
+        .pp-step-block-icon{width:68px;height:68px;border-radius:50%;background:#f3f4f6;display:flex;align-items:center;justify-content:center;margin-bottom:20px;transition:background 0.5s,box-shadow 0.5s}
+        .pp-step-block.active .pp-step-block-icon{background:#eaf5ee;box-shadow:0 0 0 10px rgba(45,122,79,0.1)}
+        .pp-step-block-icon img{width:32px;height:32px;object-fit:contain;filter:grayscale(1) opacity(0.3);transition:filter 0.5s}
+        .pp-step-block.active .pp-step-block-icon img{filter:none}
+        .pp-step-block-num{font-size:11px;font-weight:700;letter-spacing:0.12em;color:#bbb;margin-bottom:6px;transition:color 0.5s}
+        .pp-step-block.active .pp-step-block-num{color:var(--green)}
+        .pp-step-block-title{font-size:clamp(20px,2vw,28px);font-weight:800;color:#1a1a1a;margin-bottom:12px}
+        .pp-step-block-desc{font-size:15px;color:#555;line-height:1.7;max-width:420px}
+        @media(max-width:768px){.pp-container{flex-direction:column}.pp-video-sticky{width:100%;height:42vh;position:relative}.pp-steps-scroll{width:100%}.pp-step-block{height:auto;min-height:60vh;padding:48px 24px}.pp-steps-header-block{padding:48px 24px 24px}}
         .circular-flow { display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px; }
         .circular-card { background:#fff;border-radius:var(--radius);padding:24px;text-align:center;border:2px solid var(--green-light); }
         .circular-card .c-icon { font-size:36px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;height:64px; }
@@ -105,21 +153,41 @@ export default function EcosystemPage() {
         </div>
       </section>
 
-      <section className="section" style={{ paddingBottom: 0 }}>
-        <div className="container">
-          <div className="text-center" style={{ marginBottom: 0 }}>
-            <span className="section-label">Ecosystem Members</span>
-          </div>
-          <div className="eco-steps" id="ecoSteps">
+      {/* PRODUCTION PROCESS — left sticky video, right scrolls per step */}
+      <section id="ppSection">
+        <div className="pp-container">
+          <div className="pp-video-sticky">
             {[
-              { num: '1', label: 'Farmers', target: 'farmers' },
-              { num: '2', label: 'Craftsmen', target: 'craftsmen' },
-              { num: '3', label: 'Youth Innovators', target: 'youth' },
-              { num: '4', label: 'Livestock Farmers', target: 'livestock-farmers' },
-            ].map((s, i) => (
-              <div key={s.target} className={`eco-step${i === 0 ? ' active' : ''}`} data-target={s.target}>
-                <div className="eco-step-num">{s.num}</div>
-                <div className="eco-step-label">{s.label}</div>
+              '/Video/proccess/1.%20Cassava%20Harvest%2C%20peeling%20harvest.mp4',
+              '/Video/proccess/2.%20peeling%20Harvest.mp4',
+              '/Video/proccess/3.%20Washing%2C%20pressing%2C%20Drying.mp4',
+              '/Video/proccess/Packing%2C%20QC%2C%20Alocation.mp4',
+            ].map((src, i) => (
+              <video key={i} className={`pp-vid${i === 0 ? ' pp-vid-active' : ''}`} autoPlay muted loop playsInline>
+                <source src={src} type="video/mp4" />
+              </video>
+            ))}
+          </div>
+          <div className="pp-steps-scroll">
+            <div className="pp-steps-header-block">
+              <span className="section-label">Production Process</span>
+              <h3>From Cassava to Mocaf Flour</h3>
+            </div>
+            {[
+              { img: '/images/Production%20Process/Cassava%20Harvest.svg', label: 'Cassava Harvest', desc: 'Fresh cassava tubers are harvested by local farmers after 8–10 months of organic cultivation.' },
+              { img: '/images/Production%20Process/Peeling%20Harvest.svg', label: 'Peeling Harvest', desc: 'Cassava is carefully peeled to remove the outer skin while preserving the high-quality starch inside.' },
+              { img: '/images/Production%20Process/Washing.svg', label: 'Washing', desc: 'Peeled cassava is washed with clean water to remove soil and remaining impurities.' },
+              { img: '/images/Production%20Process/Pressing.svg', label: 'Pressing', desc: 'The washed cassava is pressed to extract excess liquid before the fermentation process begins.' },
+              { img: '/images/Production%20Process/Drying.svg', label: 'Drying', desc: 'Pressed cassava is sun-dried or mechanically dried to reduce moisture content to optimal levels.' },
+              { img: '/images/Production%20Process/Packing%20%26%20QC.svg', label: 'Packing & QC', desc: 'Mocaf flour undergoes strict quality control before being packaged to HACCP and Halal standards.' },
+              { img: '/images/Production%20Process/Allocation.svg', label: 'Allocation', desc: 'Premium mocaf flour is distributed to domestic buyers and international export partners worldwide.' },
+            ].map((step, i) => (
+              <div key={step.label} className={`pp-step-block${i === 0 ? ' active' : ''}`}>
+                <div className="pp-step-block-icon">
+                  <img src={step.img} alt={step.label} />
+                </div>
+                <div className="pp-step-block-title">{step.label}</div>
+                <div className="pp-step-block-desc">{step.desc}</div>
               </div>
             ))}
           </div>
@@ -154,31 +222,6 @@ export default function EcosystemPage() {
             <div className="two-col-img" style={{ padding: 0, overflow: 'hidden', background: '#eaf5ee', aspectRatio: 'unset' }}>
               <img src="/images/pengrajin%20singkong.jpg" alt="Craftsmen Rumah Mocaf" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 'var(--radius-lg)' }} />
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section section-alt">
-        <div className="container">
-          <div className="text-center">
-            <span className="section-label">Production Process</span>
-            <h3 style={{ fontSize: '24px', fontWeight: 700, color: 'var(--gray-800)', marginBottom: '8px' }}>From Cassava to Mocaf Flour</h3>
-          </div>
-          <div className="process-steps" id="processSteps">
-            {[
-              { img: '/images/Production%20Process/Cassava%20Harvest.svg', label: 'Cassava Harvest' },
-              { img: '/images/Production%20Process/Peeling%20Harvest.svg', label: 'Peeling Harvest' },
-              { img: '/images/Production%20Process/Washing.svg', label: 'Washing' },
-              { img: '/images/Production%20Process/Pressing.svg', label: 'Pressing' },
-              { img: '/images/Production%20Process/Drying.svg', label: 'Drying' },
-              { img: '/images/Production%20Process/Packing%20%26%20QC.svg', label: 'Packing & QC' },
-              { img: '/images/Production%20Process/Allocation.svg', label: 'Allocation' },
-            ].map((p, i) => (
-              <div key={p.label} className={`process-step${i === 0 ? ' active' : ''}`}>
-                <div className="process-icon"><img src={p.img} alt={p.label} /></div>
-                <div className="process-label">{p.label}</div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
