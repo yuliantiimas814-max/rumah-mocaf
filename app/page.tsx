@@ -33,16 +33,18 @@ export default function HomePage() {
       ];
       let anims: import('lottie-web').AnimationItem[] = [];
       import('lottie-web').then(({ default: lottie }) => {
-        anims = lottieDivs.map((container, i) =>
-          lottie.loadAnimation({
-            container,
-            renderer: 'svg',
-            loop: true,
-            autoplay: i === 0,
-            path: jsonPaths[i],
-            rendererSettings: { preserveAspectRatio: 'xMidYMid slice' },
-          })
-        );
+        Promise.all(jsonPaths.map(p => fetch(p).then(r => r.json()))).then(datas => {
+          anims = lottieDivs.map((container, i) =>
+            lottie.loadAnimation({
+              container,
+              renderer: 'svg',
+              loop: true,
+              autoplay: i === 0,
+              animationData: datas[i],
+              rendererSettings: { preserveAspectRatio: 'xMidYMid slice' },
+            })
+          );
+        });
       });
       function goTo(idx: number) {
         idx = Math.max(0, Math.min(total - 1, idx));
