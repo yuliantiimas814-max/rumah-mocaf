@@ -298,12 +298,12 @@ export default function AboutPage() {
             <h3 className="awards-list-title">Other Awards</h3>
             <div className="awards-photo-grid">
               {[
-                { img: '/images/Penghargaan%20lainnya/Wirausaha%20Muda%20Mandiri.png', alt: 'Wirausaha Muda Mandiri', date: 'Jan 2025', name: 'Wirausaha Muda Mandiri', by: 'Runner Up Food Category — Bank Mandiri' },
-                { img: '/images/Penghargaan%20lainnya/Talenta%20Wirausaha%20BSI%20Winner.png', alt: 'Talenta Wirausaha BSI', date: 'Oct 2023', name: 'Talenta Wirausaha BSI', by: 'Winner — Berdaya Category, Bank Syariah Indonesia' },
-                { img: '/images/Penghargaan%20lainnya/1731658580-slide1-edt%201.png', alt: 'Mental Revolution Award', date: 'Dec 2022', name: 'Mental Revolution Award', by: 'Coordinating Ministry for Human Development & Culture' },
-                { img: '/images/Penghargaan%20lainnya/UKM%20Pangan%20Award%202022.png', alt: 'UKM Pangan Awards', date: 'Aug 2022', name: 'UKM Pangan Awards', by: 'Ministry of Trade, Republic of Indonesia' },
-                { img: '/images/Penghargaan%20lainnya/Pengabdian%20di%20bidang%20sosial-ekonomi.png', alt: 'Social-Economic Service Award', date: 'Nov 2021', name: 'Social-Economic Service Award', by: 'Executive Board of Muhammadiyah' },
-                { img: '/images/Penghargaan%20lainnya/Kementan%20Awards%202021.png', alt: 'Kementan Awards 2021', date: 'Aug 2021', name: 'Kementan Awards 2021', by: 'Ministry of Agriculture, Republic of Indonesia' },
+                { img: '/images/penghargaan%20lainnya/Wirausaha%20Muda%20Mandiri.png', alt: 'Wirausaha Muda Mandiri', date: 'Jan 2025', name: 'Wirausaha Muda Mandiri', by: 'Runner Up Food Category — Bank Mandiri' },
+                { img: '/images/penghargaan%20lainnya/Talenta%20Wirausaha%20BSI%20Winner.png', alt: 'Talenta Wirausaha BSI', date: 'Oct 2023', name: 'Talenta Wirausaha BSI', by: 'Winner — Berdaya Category, Bank Syariah Indonesia' },
+                { img: '/images/penghargaan%20lainnya/1731658580-slide1-edt%201.png', alt: 'Mental Revolution Award', date: 'Dec 2022', name: 'Mental Revolution Award', by: 'Coordinating Ministry for Human Development & Culture' },
+                { img: '/images/penghargaan%20lainnya/UKM%20Pangan%20Award%202022.png', alt: 'UKM Pangan Awards', date: 'Aug 2022', name: 'UKM Pangan Awards', by: 'Ministry of Trade, Republic of Indonesia' },
+                { img: '/images/penghargaan%20lainnya/Pengabdian%20di%20bidang%20sosial-ekonomi.png', alt: 'Social-Economic Service Award', date: 'Nov 2021', name: 'Social-Economic Service Award', by: 'Executive Board of Muhammadiyah' },
+                { img: '/images/penghargaan%20lainnya/Kementan%20Awards%202021.png', alt: 'Kementan Awards 2021', date: 'Aug 2021', name: 'Kementan Awards 2021', by: 'Ministry of Agriculture, Republic of Indonesia' },
               ].map((a) => (
                 <div key={a.name} className="award-photo-card">
                   <div className="award-photo-img"><img src={a.img} alt={a.alt} /></div>
