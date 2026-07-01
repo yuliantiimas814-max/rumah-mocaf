@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
+import lottie from 'lottie-web';
 
 export default function HomePage() {
   useEffect(() => {
@@ -23,20 +24,29 @@ export default function HomePage() {
       let cur = 0;
       const total = 4;
       const slides = Array.from(document.querySelectorAll('.eco-slide')) as HTMLElement[];
-      const vids = Array.from(document.querySelectorAll('.eco-vid')) as HTMLVideoElement[];
+      const lottieDivs = Array.from(document.querySelectorAll('.eco-lottie')) as HTMLElement[];
       const dots = Array.from(document.querySelectorAll('.eco-dot-btn')) as HTMLElement[];
+      const jsonPaths = [
+        '/video-animasi/farmers.json',
+        '/video-animasi/craftsmen.json',
+        '/video-animasi/youth-innovators.json',
+        '/video-animasi/livestock-farmers.json',
+      ];
+      const anims = lottieDivs.map((container, i) =>
+        lottie.loadAnimation({ container, renderer: 'svg', loop: true, autoplay: i === 0, path: jsonPaths[i] })
+      );
       function goTo(idx: number) {
         idx = Math.max(0, Math.min(total - 1, idx));
         if (idx === cur) return;
         const prev = cur;
         cur = idx;
-        vids[cur].play();
-        vids[cur].classList.add('active');
+        anims[cur].play();
+        lottieDivs[cur].classList.add('active');
         slides[cur].classList.remove('inactive');
         dots[cur].classList.add('active');
         setTimeout(() => {
-          vids[prev].classList.remove('active');
-          vids[prev].pause();
+          lottieDivs[prev].classList.remove('active');
+          anims[prev].stop();
           slides[prev].classList.add('inactive');
           dots[prev].classList.remove('active');
         }, 50);
@@ -342,8 +352,9 @@ export default function HomePage() {
         .eco-dot-btn.active { height:20px;border-radius:3px;background:#2D7A4F; }
         .eco-cta-btn { display:inline-block;margin-top:24px; }
         .eco-cta-btn:hover { color:#fff!important; }
-        .eco-vid { position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.8s ease; }
-        .eco-vid.active { opacity:1; }
+        .eco-lottie { position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity 0.8s ease; }
+        .eco-lottie.active { opacity:1; }
+        .eco-lottie > svg { width:100%!important;height:100%!important; }
         @media (max-width:900px) { .eco-scroll-wrap{height:auto}.eco-sticky-view{position:relative;height:100vh}.eco-content-area{padding:0 24px}.eco-text-side{flex:0 0 100%;padding:80px 0}.eco-slide{position:relative;top:auto;left:auto}.eco-slide.inactive{display:none;opacity:1;transform:none}.eco-scroll-label{display:none}.eco-cta-btn{position:relative;bottom:auto;margin-top:8px} }
         @media (max-width:768px) { .eco-content-area{padding:0 16px} }
         .psc-scroll-wrap { position:relative;height:1000vh;overflow:clip; }
@@ -512,10 +523,10 @@ export default function HomePage() {
       <section className="eco-scroll-wrap" id="ecoWrap">
         <div className="eco-sticky-view" id="ecoView">
           <div className="eco-bg-videos">
-            <video className="eco-vid active" src="/video-animasi/farmers.mp4" autoPlay muted loop playsInline></video>
-            <video className="eco-vid" src="/video-animasi/craftsmen.mp4" muted loop playsInline></video>
-            <video className="eco-vid" src="/video-animasi/youth-innovators.mp4" muted loop playsInline></video>
-            <video className="eco-vid" src="/video-animasi/livestock-farmers.mp4" muted loop playsInline></video>
+            <div className="eco-lottie active"></div>
+            <div className="eco-lottie"></div>
+            <div className="eco-lottie"></div>
+            <div className="eco-lottie"></div>
           </div>
           <div className="eco-overlay"></div>
           <div className="eco-scroll-label">
