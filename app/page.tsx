@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
-import lottie from 'lottie-web';
 
 export default function HomePage() {
   useEffect(() => {
@@ -32,21 +31,24 @@ export default function HomePage() {
         '/video-animasi/youth-innovators.json',
         '/video-animasi/livestock-farmers.json',
       ];
-      const anims = lottieDivs.map((container, i) =>
-        lottie.loadAnimation({ container, renderer: 'svg', loop: true, autoplay: i === 0, path: jsonPaths[i] })
-      );
+      let anims: import('lottie-web').AnimationItem[] = [];
+      import('lottie-web').then(({ default: lottie }) => {
+        anims = lottieDivs.map((container, i) =>
+          lottie.loadAnimation({ container, renderer: 'canvas', loop: true, autoplay: i === 0, path: jsonPaths[i] })
+        );
+      });
       function goTo(idx: number) {
         idx = Math.max(0, Math.min(total - 1, idx));
         if (idx === cur) return;
         const prev = cur;
         cur = idx;
-        anims[cur].play();
+        if (anims[cur]) anims[cur].play();
         lottieDivs[cur].classList.add('active');
         slides[cur].classList.remove('inactive');
         dots[cur].classList.add('active');
         setTimeout(() => {
           lottieDivs[prev].classList.remove('active');
-          anims[prev].stop();
+          if (anims[prev]) anims[prev].stop();
           slides[prev].classList.add('inactive');
           dots[prev].classList.remove('active');
         }, 50);
@@ -352,9 +354,9 @@ export default function HomePage() {
         .eco-dot-btn.active { height:20px;border-radius:3px;background:#2D7A4F; }
         .eco-cta-btn { display:inline-block;margin-top:24px; }
         .eco-cta-btn:hover { color:#fff!important; }
-        .eco-lottie { position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity 0.8s ease; }
+        .eco-lottie { position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity 0.8s ease;overflow:hidden; }
         .eco-lottie.active { opacity:1; }
-        .eco-lottie > svg { width:100%!important;height:100%!important; }
+        .eco-lottie canvas { position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);min-width:100%;min-height:100%; }
         @media (max-width:900px) { .eco-scroll-wrap{height:auto}.eco-sticky-view{position:relative;height:100vh}.eco-content-area{padding:0 24px}.eco-text-side{flex:0 0 100%;padding:80px 0}.eco-slide{position:relative;top:auto;left:auto}.eco-slide.inactive{display:none;opacity:1;transform:none}.eco-scroll-label{display:none}.eco-cta-btn{position:relative;bottom:auto;margin-top:8px} }
         @media (max-width:768px) { .eco-content-area{padding:0 16px} }
         .psc-scroll-wrap { position:relative;height:1000vh;overflow:clip; }
