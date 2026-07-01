@@ -372,31 +372,35 @@ export default function HomePage() {
         .hero-ticker-set { display:flex;align-items:center;gap:64px;padding-right:64px;flex-shrink:0; }
         .hero-ticker-track img { height:32px;width:auto;object-fit:contain;filter:brightness(0) invert(1) opacity(0.55);flex-shrink:0;user-select:none; }
         .eco-scroll-wrap { position:relative;height:400vh;margin-bottom:0; }
-        .eco-sticky-view { position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:stretch;background:#c8dfd0; }
+        .eco-sticky-view { position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:stretch;background:#1a4d2e; }
         .eco-scroll-label { position:absolute;left:28px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;z-index:3; }
-        .eco-scroll-line-v { width:1px;height:72px;background:#2D7A4F;opacity:0.6; }
-        .eco-scroll-label span { writing-mode:vertical-rl;text-orientation:mixed;font-size:10px;font-weight:700;letter-spacing:0.18em;color:#2D7A4F;opacity:0.8; }
+        .eco-scroll-line-v { width:1px;height:72px;background:rgba(255,255,255,0.5); }
+        .eco-scroll-label span { writing-mode:vertical-rl;text-orientation:mixed;font-size:10px;font-weight:700;letter-spacing:0.18em;color:rgba(255,255,255,0.75); }
         .eco-bg-videos { position:absolute;inset:0;z-index:0; }
         .eco-overlay { display:none; }
         .eco-content-area { position:relative;z-index:2;display:flex;align-items:center;width:100%;height:100%;padding:0 0 0 max(80px,calc((100vw - 1200px)/2 + 24px)); }
         .eco-text-side { flex:0 0 44%;position:relative;display:flex;flex-direction:column;justify-content:center;gap:0;padding:0;background:transparent; }
-        .eco-section-tag { display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#1A3D2B;padding:4px 14px;background:rgba(255,255,255,0.6);border-radius:20px;width:fit-content;margin-bottom:16px; }
+        .eco-section-tag { display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#fff;padding:4px 14px;background:rgba(255,255,255,0.2);border-radius:20px;width:fit-content;margin-bottom:16px; }
         .eco-slides-wrapper { display:grid;margin:0; }
         .eco-slide { grid-area:1/1;width:100%;transition:opacity 0.5s ease,transform 0.5s ease; }
         .eco-slide.inactive { opacity:0;transform:translateY(20px);pointer-events:none; }
         .eco-slide:not(.inactive) { opacity:1;transform:translateY(0); }
-        .eco-name { font-size:clamp(44px,4.5vw,68px);font-weight:800;color:#2D5A3D;line-height:1.1;margin-bottom:10px; }
-        .eco-role { font-size:17px;font-weight:600;color:#3a8a5f;margin-bottom:18px; }
-        .eco-desc-text { font-size:15px;line-height:1.75;color:#4a7060;max-width:38ch;margin-bottom:24px; }
-        .eco-count-badge { display:block;font-size:15px;font-weight:700;color:#fff;padding:7px 20px;background:#2D7A4F;border-radius:24px;width:fit-content;margin-bottom:0; }
+        .eco-name { font-size:clamp(44px,4.5vw,68px);font-weight:800;color:#fff;line-height:1.1;margin-bottom:10px; }
+        .eco-role { font-size:17px;font-weight:600;color:rgba(255,255,255,0.85);margin-bottom:18px; }
+        .eco-desc-text { font-size:15px;line-height:1.75;color:rgba(255,255,255,0.75);max-width:38ch;margin-bottom:24px; }
+        .eco-count-badge { display:block;font-size:15px;font-weight:700;color:#fff;padding:7px 20px;background:rgba(255,255,255,0.25);border-radius:24px;width:fit-content;margin-bottom:0; }
         .eco-scroll-dots { display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:12px; }
-        .eco-dot-btn { width:6px;height:6px;border-radius:50%;background:rgba(45,122,79,0.35);border:none;cursor:pointer;transition:all 0.3s;padding:0; }
-        .eco-dot-btn.active { height:20px;border-radius:3px;background:#2D7A4F; }
+        .eco-dot-btn { width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.3);border:none;cursor:pointer;transition:all 0.3s;padding:0; }
+        .eco-dot-btn.active { height:20px;border-radius:3px;background:rgba(255,255,255,0.9); }
         .eco-cta-btn { display:inline-block;margin-top:24px; }
         .eco-cta-btn:hover { color:#fff!important; }
         .eco-lottie { position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity 0.8s ease;overflow:hidden; }
         .eco-lottie.active { opacity:1; }
         .eco-lottie svg { position:absolute!important;inset:0!important;width:100%!important;height:100%!important; }
+        .eco-lottie:nth-child(1) { background:linear-gradient(135deg,#1a4d2e 0%,#2d7a4f 40%,#4caf80 80%,#a8d5b5 100%); }
+        .eco-lottie:nth-child(2) { background:linear-gradient(135deg,#1a3a4d 0%,#1e5f7a 40%,#3090b0 80%,#8acce0 100%); }
+        .eco-lottie:nth-child(3) { background:linear-gradient(135deg,#3d1a4d 0%,#6b2d8a 40%,#9b5dc0 80%,#cda8e0 100%); }
+        .eco-lottie:nth-child(4) { background:linear-gradient(135deg,#4d3a1a 0%,#8a6020 40%,#c09040 80%,#e0c888 100%); }
         @media (max-width:900px) { .eco-scroll-wrap{height:auto}.eco-sticky-view{position:relative;height:100vh}.eco-content-area{padding:0 24px}.eco-text-side{flex:0 0 100%;padding:80px 0}.eco-slide{position:relative;top:auto;left:auto}.eco-slide.inactive{display:none;opacity:1;transform:none}.eco-scroll-label{display:none}.eco-cta-btn{position:relative;bottom:auto;margin-top:8px} }
         @media (max-width:768px) { .eco-content-area{padding:0 16px} }
         .psc-scroll-wrap { position:relative;height:1000vh;overflow:clip; }
@@ -586,10 +590,10 @@ export default function HomePage() {
             <div className="eco-text-side">
               <span className="eco-section-tag">Our Ecosystem</span>
               <div className="eco-slides-wrapper">
-                <div className="eco-slide"><h2 className="eco-name">Farmers</h2><p className="eco-role">Sustainable Cassava Cultivation</p><p className="eco-desc-text">Farmers practice integrated organic farming, managing every step of cassava cultivation — from planting quality seedlings to sustainable harvesting.</p><div className="eco-count-badge">625+ Farmers</div><Link href="/ecosystem" className="btn btn-outline eco-cta-btn" style={{ borderColor: 'rgba(45,122,79,0.6)', color: '#2D5A3D' }}>Explore Ecosystem →</Link></div>
-                <div className="eco-slide inactive"><h2 className="eco-name">Craftsmen</h2><p className="eco-role">Transforming Cassava into Premium Mocaf Flour</p><p className="eco-desc-text">Craftsmen transform raw cassava into premium gluten-free mocaf flour through careful soaking, pressing, drying, and sieving at every step.</p><div className="eco-count-badge">265+ Craftsmen</div><Link href="/ecosystem" className="btn btn-outline eco-cta-btn" style={{ borderColor: 'rgba(45,122,79,0.6)', color: '#2D5A3D' }}>Explore Ecosystem →</Link></div>
-                <div className="eco-slide inactive"><h2 className="eco-name">Youth Innovators</h2><p className="eco-role">Global Distribution and Innovation</p><p className="eco-desc-text">Youth lead quality control, branding, and R&amp;D — continuously innovating mocaf products and expanding Rumah Mocaf&apos;s global reach.</p><div className="eco-count-badge">124+ Youth Innovators</div><Link href="/ecosystem" className="btn btn-outline eco-cta-btn" style={{ borderColor: 'rgba(45,122,79,0.6)', color: '#2D5A3D' }}>Explore Ecosystem →</Link></div>
-                <div className="eco-slide inactive"><h2 className="eco-name">Livestock Farmers</h2><p className="eco-role">Circular Waste Utilization</p><p className="eco-desc-text">Livestock farmers convert mocaf production waste into animal feed and organic fertilizer, reducing pollution and adding value to the ecosystem.</p><div className="eco-count-badge">Circular Economy</div><Link href="/ecosystem" className="btn btn-outline eco-cta-btn" style={{ borderColor: 'rgba(45,122,79,0.6)', color: '#2D5A3D' }}>Explore Ecosystem →</Link></div>
+                <div className="eco-slide"><h2 className="eco-name">Farmers</h2><p className="eco-role">Sustainable Cassava Cultivation</p><p className="eco-desc-text">Farmers practice integrated organic farming, managing every step of cassava cultivation — from planting quality seedlings to sustainable harvesting.</p><div className="eco-count-badge">625+ Farmers</div><Link href="/ecosystem" className="btn btn-outline eco-cta-btn" style={{ borderColor: 'rgba(255,255,255,0.5)', color: '#fff' }}>Explore Ecosystem →</Link></div>
+                <div className="eco-slide inactive"><h2 className="eco-name">Craftsmen</h2><p className="eco-role">Transforming Cassava into Premium Mocaf Flour</p><p className="eco-desc-text">Craftsmen transform raw cassava into premium gluten-free mocaf flour through careful soaking, pressing, drying, and sieving at every step.</p><div className="eco-count-badge">265+ Craftsmen</div><Link href="/ecosystem" className="btn btn-outline eco-cta-btn" style={{ borderColor: 'rgba(255,255,255,0.5)', color: '#fff' }}>Explore Ecosystem →</Link></div>
+                <div className="eco-slide inactive"><h2 className="eco-name">Youth Innovators</h2><p className="eco-role">Global Distribution and Innovation</p><p className="eco-desc-text">Youth lead quality control, branding, and R&amp;D — continuously innovating mocaf products and expanding Rumah Mocaf&apos;s global reach.</p><div className="eco-count-badge">124+ Youth Innovators</div><Link href="/ecosystem" className="btn btn-outline eco-cta-btn" style={{ borderColor: 'rgba(255,255,255,0.5)', color: '#fff' }}>Explore Ecosystem →</Link></div>
+                <div className="eco-slide inactive"><h2 className="eco-name">Livestock Farmers</h2><p className="eco-role">Circular Waste Utilization</p><p className="eco-desc-text">Livestock farmers convert mocaf production waste into animal feed and organic fertilizer, reducing pollution and adding value to the ecosystem.</p><div className="eco-count-badge">Circular Economy</div><Link href="/ecosystem" className="btn btn-outline eco-cta-btn" style={{ borderColor: 'rgba(255,255,255,0.5)', color: '#fff' }}>Explore Ecosystem →</Link></div>
               </div>
             </div>
           </div>
