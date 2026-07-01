@@ -17,8 +17,7 @@ export default function HomePage() {
     let alive = true;
     (async () => {
       try {
-          // @ts-expect-error — ESM build has no declaration file
-        const { default: lottie } = await import(/* @ts-ignore */ 'lottie-web/build/player/esm/lottie_svg.min.js');
+        const { default: lottie } = await import('lottie-web');
         const datas = await Promise.all(paths.map(p => fetch(p).then(r => r.json())));
         if (!alive) return;
         containers.forEach((container, i) => {
