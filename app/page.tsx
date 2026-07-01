@@ -4,6 +4,39 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 
 export default function HomePage() {
+  // Lottie ecosystem backgrounds — separate effect for reliability
+  useEffect(() => {
+    const containers = Array.from(document.querySelectorAll<HTMLElement>('.eco-lottie'));
+    if (!containers.length) return;
+    const paths = [
+      '/video-animasi/farmers.json',
+      '/video-animasi/craftsmen.json',
+      '/video-animasi/youth-innovators.json',
+      '/video-animasi/livestock-farmers.json',
+    ];
+    let alive = true;
+    (async () => {
+      try {
+        const { default: lottie } = await import('lottie-web');
+        const datas = await Promise.all(paths.map(p => fetch(p).then(r => r.json())));
+        if (!alive) return;
+        containers.forEach((container, i) => {
+          lottie.loadAnimation({
+            container,
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            animationData: datas[i],
+            rendererSettings: { preserveAspectRatio: 'xMidYMid slice' },
+          });
+        });
+      } catch (e) {
+        console.error('Lottie init error:', e);
+      }
+    })();
+    return () => { alive = false; };
+  }, []);
+
   useEffect(() => {
     // Hero ticker
     const heroTrack = document.getElementById('heroTickerTrack') as HTMLElement | null;
@@ -25,39 +58,16 @@ export default function HomePage() {
       const slides = Array.from(document.querySelectorAll('.eco-slide')) as HTMLElement[];
       const lottieDivs = Array.from(document.querySelectorAll('.eco-lottie')) as HTMLElement[];
       const dots = Array.from(document.querySelectorAll('.eco-dot-btn')) as HTMLElement[];
-      const jsonPaths = [
-        '/video-animasi/farmers.json',
-        '/video-animasi/craftsmen.json',
-        '/video-animasi/youth-innovators.json',
-        '/video-animasi/livestock-farmers.json',
-      ];
-      let anims: import('lottie-web').AnimationItem[] = [];
-      import('lottie-web').then(({ default: lottie }) => {
-        Promise.all(jsonPaths.map(p => fetch(p).then(r => r.json()))).then(datas => {
-          anims = lottieDivs.map((container, i) =>
-            lottie.loadAnimation({
-              container,
-              renderer: 'svg',
-              loop: true,
-              autoplay: i === 0,
-              animationData: datas[i],
-              rendererSettings: { preserveAspectRatio: 'xMidYMid slice' },
-            })
-          );
-        });
-      });
       function goTo(idx: number) {
         idx = Math.max(0, Math.min(total - 1, idx));
         if (idx === cur) return;
         const prev = cur;
         cur = idx;
-        if (anims[cur]) anims[cur].play();
         lottieDivs[cur].classList.add('active');
         slides[cur].classList.remove('inactive');
         dots[cur].classList.add('active');
         setTimeout(() => {
           lottieDivs[prev].classList.remove('active');
-          if (anims[prev]) anims[prev].stop();
           slides[prev].classList.add('inactive');
           dots[prev].classList.remove('active');
         }, 50);
