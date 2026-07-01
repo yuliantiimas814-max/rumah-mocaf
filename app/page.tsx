@@ -512,10 +512,10 @@ export default function HomePage() {
       <section className="eco-scroll-wrap" id="ecoWrap">
         <div className="eco-sticky-view" id="ecoView">
           <div className="eco-bg-videos">
-            <video className="eco-vid active" src="/Video Animasi rumah Mocaf/Farmers.mp4" autoPlay muted loop playsInline></video>
-            <video className="eco-vid" src="/Video Animasi/Craftsmen.mp4" muted loop playsInline></video>
-            <video className="eco-vid" src="/Video Animasi rumah Mocaf/Youth Innovators.mp4" muted loop playsInline></video>
-            <video className="eco-vid" src="/Video Animasi rumah Mocaf/Livestock Farmers.mp4" muted loop playsInline></video>
+            <video className="eco-vid active" src="/video-animasi/farmers.mp4" autoPlay muted loop playsInline></video>
+            <video className="eco-vid" src="/video-animasi/craftsmen.mp4" muted loop playsInline></video>
+            <video className="eco-vid" src="/video-animasi/youth-innovators.mp4" muted loop playsInline></video>
+            <video className="eco-vid" src="/video-animasi/livestock-farmers.mp4" muted loop playsInline></video>
           </div>
           <div className="eco-overlay"></div>
           <div className="eco-scroll-label">
